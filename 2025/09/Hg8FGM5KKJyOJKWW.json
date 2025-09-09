@@ -1,0 +1,1229 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Run an Actor and get dataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run an Actor and get dataset": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Business Profiles": {
+      "main": [
+        [
+          {
+            "node": "Download Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Data Records": {
+      "main": [
+        [
+          {
+            "node": "Update Business Profiles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Videos": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Update record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update record": {
+      "main": [
+        [
+          {
+            "node": "Search records1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Create Data Records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-08T02:20:01.490Z",
+  "id": "Hg8FGM5KKJyOJKWW",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Tiktok Scraper",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "08f65c0e-92c8-4923-b55d-dcede689c273",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4700c334-4e09-4640-8246-c322ea94f33a",
+              "name": "days_back",
+              "value": "={{ $json.days_back }}",
+              "type": "number"
+            },
+            {
+              "id": "ce39b2a7-585b-480e-9f44-5b2147cb4d35",
+              "name": "handles",
+              "value": "={{ $json.handles }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "738fa1b2-485e-4b04-9cbf-179d6c544baa",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "Run actor and get dataset",
+        "actorId": {
+          "__rl": true,
+          "value": "0FXVyOXXEmdGcV88a",
+          "mode": "list",
+          "cachedResultName": "TikTok Profile Scraper (clockworks/tiktok-profile-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/0FXVyOXXEmdGcV88a/input"
+        },
+        "customBody": "={\n    \"excludePinnedPosts\": false,\n    \"oldestPostDateUnified\": \"{{ $json.days_back }} days\",\n    \"profileScrapeSections\": [\n        \"videos\"\n    ],\n    \"profileSorting\": \"popular\",\n    \"profiles\": {{ $json.handles.toJsonString() }},\n    \"shouldDownloadAvatars\": false,\n    \"shouldDownloadCovers\": true,\n    \"shouldDownloadSlideshowImages\": false,\n    \"shouldDownloadSubtitles\": false,\n    \"shouldDownloadVideos\": true\n}",
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        640,
+        0
+      ],
+      "id": "8e25167c-f847-4f7f-9305-23fb0dd81cd3",
+      "name": "Run an Actor and get dataset",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "iReLeawrymBVQicl",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldqSDOnSiaxVS5w",
+          "mode": "list",
+          "cachedResultName": "Settings",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbldqSDOnSiaxVS5w"
+        },
+        "filterByFormula": "=({platform} = 'tiktok')",
+        "returnAll": false,
+        "limit": 1,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a3b15312-3638-482b-87b1-aa3749b9827c",
+      "name": "Search records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Run an Actor and get dataset').item.json.videoMeta.downloadAddr }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1952,
+        0
+      ],
+      "id": "e1455637-bb45-4ae0-9a16-5c0fc7a6511d",
+      "name": "Download Videos"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblnmhSDr7j7EM52h",
+          "mode": "list",
+          "cachedResultName": "TikTok Business Profiles",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblnmhSDr7j7EM52h"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Author ID": "={{ $('Run an Actor and get dataset').item.json.authorMeta.id }}",
+            "Platform": "tiktok",
+            "Username": "={{ $('Run an Actor and get dataset').item.json.authorMeta.name }}",
+            "Display Name": "={{ $('Run an Actor and get dataset').item.json.authorMeta.nickName }}",
+            "Profile URL": "={{ $('Run an Actor and get dataset').item.json.authorMeta.profileUrl }}",
+            "Avatar URL": "={{ $('Run an Actor and get dataset').item.json.authorMeta.originalAvatarUrl }}",
+            "Following": "={{ $('Run an Actor and get dataset').item.json.authorMeta.following }}",
+            "Followers": "={{ $('Run an Actor and get dataset').item.json.authorMeta.fans }}",
+            "Total Hearts": "={{ $('Run an Actor and get dataset').item.json.authorMeta.heart }}",
+            "Videos Count": "={{ $('Run an Actor and get dataset').item.json.authorMeta.video }}",
+            "Bio": "={{ $('Run an Actor and get dataset').item.json.authorMeta.signature }}",
+            "Bio Link": "={{ $('Run an Actor and get dataset').item.json.authorMeta.bioLink }}"
+          },
+          "matchingColumns": [
+            "Author ID"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Author ID",
+              "displayName": "Author ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "tiktok",
+                  "value": "tiktok"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Username",
+              "displayName": "Username",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Display Name",
+              "displayName": "Display Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profile URL",
+              "displayName": "Profile URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Avatar URL",
+              "displayName": "Avatar URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Avatar",
+              "displayName": "Avatar",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Verified",
+              "displayName": "Verified",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Bio",
+              "displayName": "Bio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Bio Link",
+              "displayName": "Bio Link",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Followers",
+              "displayName": "Followers",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Following",
+              "displayName": "Following",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Total Hearts",
+              "displayName": "Total Hearts",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Videos Count",
+              "displayName": "Videos Count",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1696,
+        0
+      ],
+      "id": "af0dd9a4-8f6a-45fe-a577-cbfd8186059b",
+      "name": "Update Business Profiles",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl9N4QDV9AauqfjB",
+          "mode": "list",
+          "cachedResultName": "TikTok Results",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbl9N4QDV9AauqfjB"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "post_id": "={{ $json.id }}",
+            "web_url": "={{ $json.webVideoUrl }}",
+            "duration_s": "={{ $json.videoMeta.duration }}",
+            "download_url": "={{ $json.videoMeta.downloadAddr }}",
+            "metrics_likes": "={{ $json.diggCount }}",
+            "metrics_shares": "={{ $json.shareCount }}",
+            "metrics_comments": "={{ $json.commentCount }}",
+            "metrics_views": "={{ $json.playCount }}",
+            "text": "={{ $json.text }}",
+            "author_id": "={{ $json.authorMeta.id }}",
+            "author_username": "={{ $json.authorMeta.name }}",
+            "author_profile_url": "={{ $json.authorMeta.profileUrl }}",
+            "author_avatar": "={{ $json.authorMeta.avatar }}",
+            "created_at": "={{ $json.createTimeISO.toDateTime().format('MM/dd/yyyy') }}",
+            "metrics_saves": "={{ $json.collectCount }}",
+            "cover_url": "={{ $json.videoMeta.coverUrl }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "post_id",
+              "displayName": "post_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "web_url",
+              "displayName": "web_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "download_url",
+              "displayName": "download_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "cover_url",
+              "displayName": "cover_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_s",
+              "displayName": "duration_s",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "author_id",
+              "displayName": "author_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "author_username",
+              "displayName": "author_username",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "author_avatar",
+              "displayName": "author_avatar",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "author_profile_url",
+              "displayName": "author_profile_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "metrics_likes",
+              "displayName": "metrics_likes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "metrics_views",
+              "displayName": "metrics_views",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "metrics_comments",
+              "displayName": "metrics_comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "metrics_shares",
+              "displayName": "metrics_shares",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "metrics_saves",
+              "displayName": "metrics_saves",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1472,
+        0
+      ],
+      "id": "f3f273a5-2a0b-4415-9e67-998ec52015ac",
+      "name": "Create Data Records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2192,
+        64
+      ],
+      "id": "3323d012-eaf4-4438-a5f0-3850d8755f38",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "marROkDq8FtIIcmK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl9N4QDV9AauqfjB",
+          "mode": "list",
+          "cachedResultName": "TikTok Results",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbl9N4QDV9AauqfjB"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "post_id": "={{ $('Create Data Records').item.json.fields.post_id }}",
+            "transcript": "={{ $json.text }}"
+          },
+          "matchingColumns": [
+            "post_id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true
+            },
+            {
+              "id": "post_id",
+              "displayName": "post_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "web_url",
+              "displayName": "web_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "download_url",
+              "displayName": "download_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "cover_url",
+              "displayName": "cover_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "transcript",
+              "displayName": "transcript",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "duration_s",
+              "displayName": "duration_s",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "author_id",
+              "displayName": "author_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "author_username",
+              "displayName": "author_username",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "author_avatar",
+              "displayName": "author_avatar",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "author_profile_url",
+              "displayName": "author_profile_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "metrics_likes",
+              "displayName": "metrics_likes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "metrics_views",
+              "displayName": "metrics_views",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "metrics_comments",
+              "displayName": "metrics_comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "metrics_shares",
+              "displayName": "metrics_shares",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "metrics_saves",
+              "displayName": "metrics_saves",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        336
+      ],
+      "id": "5861f14f-883b-43d3-a8c9-f7146440f68f",
+      "name": "Update record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1056,
+        624
+      ],
+      "id": "c310cfec-306b-498f-9578-ac09594321f8",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "marROkDq8FtIIcmK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Inputs:\n- top TikToks (5–10 items; each item includes transcript/on-screen text/caption and, if available, views, likes, comments, shares, post_url, thumbnail_url):\n{{ $json.data }}\n\nReturn EXACTLY this JSON (no markdown/prose):\n{\n  \"reels\": [\n    {\n      \"title_line\": \"<punchy headline from transcript/caption (<=90 chars, no hashtags/emojis)>\",\n      \"tier_line\": \"<Tier> (<engagement%> engagement; <views> views • <likes> likes • <comments> comments)\",\n      \"why_line\": \"<one clear sentence on why it performed based on the text/format>\",\n      \"post_url\": \"<tiktok canonical url>\",\n      \"thumbnail_url\": \"<cover image url>\"\n    }\n    // 5–10 items total\n  ],\n  \"patterns\": {\n    \"topics_csv\": \"<5–8 short topic phrases, comma-separated>\",\n    \"hooks_csv\": \"<5–8 hook TYPES (not titles), comma-separated>\",\n    \"trends_csv\": \"<5–8 production/format trends, comma-separated>\",\n    \"playbook_bullets\": [\"<4–6 short imperatives>\"]\n  },\n  \"hooks_ideas\": [\"<12–15 new hook lines, 6–12 words each>\"]\n}\n\nRules (keep it simple):\n- title_line: derive from the first promise/outcome in the transcript or caption. No hashtags/emojis/@.\n- tier_line format must match EXACTLY:\n  \"<Tier> (<engagement%> engagement; <views> views • <likes> likes • <comments> comments)\"\n  • engagement% = ((likes + comments + shares_if_given) / views) * 100, round to ONE decimal.\n  • Tier by engagement%: High ≥ 15.0%, Medium 7.5–14.9%, Low < 7.5%.\n  • If any metric is missing, treat it as 0; still produce the full string.\n  • Use thousands separators (e.g., 148,700).\n- why_line: 1 sentence max. Point to concrete drivers seen in the text/format (e.g., one-move framing, benefit stack, sets/reps, ultra-short pacing, save/share CTA, identity line).\n- patterns.*: compress—short phrases only (no long sentences).\n- hooks_ideas: do NOT copy titles; make platform-native, testable lines.\n\nOutput must be valid JSON and contain non-empty arrays:\n- reels: 5–10 items\n- playbook_bullets: 4–6 bullets\n- hooks_ideas: 12–15 lines",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1152,
+        336
+      ],
+      "id": "7c1c6c8a-4261-4174-99f8-2abbc033e973",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl9N4QDV9AauqfjB",
+          "mode": "list",
+          "cachedResultName": "TikTok Results",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbl9N4QDV9AauqfjB"
+        },
+        "filterByFormula": "=({created_at} >= '{{ $now.minus(14, 'days').format('MM/dd/yyyy') }}')",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        336,
+        336
+      ],
+      "id": "2f3d210e-f6bd-4d3f-8ba2-f64d9b7060ed",
+      "name": "Search records1",
+      "executeOnce": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "include": "specifiedFields",
+        "fieldsToInclude": "text, transcript, metrics_views",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        592,
+        336
+      ],
+      "id": "5f43af18-d56e-4545-ac81-dea92e5f5885",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "playCount",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        896,
+        0
+      ],
+      "id": "4daad50b-a975-4ea1-ba34-90d4c6fdc0b9",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "maxItems": 7
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        0
+      ],
+      "id": "d4862c62-a17d-4aa2-9ca7-7b6c1735248f",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0bb70025-497d-4e4f-bf7e-3945e93972e7",
+              "name": "data",
+              "value": "={{ $json.data.toJsonString() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        848,
+        336
+      ],
+      "id": "452a8853-3a16-4eef-b312-03aa5b596ac6",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n-workflows",
+  "repo_owner": "tylerprogramming",
+  "repo_path": "https://github.com/tylerprogramming/n8n-workflows",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-08T02:20:01.496Z",
+      "updatedAt": "2025-09-08T02:20:01.496Z",
+      "role": "workflow:owner",
+      "workflowId": "Hg8FGM5KKJyOJKWW",
+      "projectId": "x0No9CeX7Uf2gClq"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-09-07T04:22:44.982Z",
+      "updatedAt": "2025-09-07T04:22:44.982Z",
+      "id": "93xoGltPT6COu6ov",
+      "name": "content"
+    },
+    {
+      "createdAt": "2025-08-25T16:53:41.059Z",
+      "updatedAt": "2025-08-25T16:53:41.059Z",
+      "id": "EBygcOYQsXg5BYAm",
+      "name": "social media"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-09T12:34:59.000Z",
+  "versionId": "e842887c-dd7a-4bdc-b457-553da0eac973"
+}
