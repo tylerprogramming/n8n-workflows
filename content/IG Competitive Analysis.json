@@ -879,7 +879,7 @@
       "typeVersion": 4.7,
       "position": [
         -240,
-        592
+        576
       ],
       "id": "792e3083-c0a6-4819-acf8-a56264ff01f0",
       "name": "Get row(s) in sheet",
@@ -899,7 +899,7 @@
       "typeVersion": 1,
       "position": [
         384,
-        592
+        576
       ],
       "id": "1a590c15-75cd-4e9a-ade9-dbcfd2f7ac51",
       "name": "Limit"
@@ -922,7 +922,7 @@
       "typeVersion": 3.4,
       "position": [
         -448,
-        592
+        576
       ],
       "id": "e76479d5-27f3-4670-bda0-3a8e37df1fa7",
       "name": "Analysis Settings"
@@ -940,7 +940,7 @@
       "typeVersion": 2.1,
       "position": [
         1888,
-        912
+        896
       ],
       "id": "6c4aab68-1cd8-4c3e-867d-9fd67dfd33d9",
       "name": "Send a message",
@@ -987,7 +987,7 @@
     },
     {
       "parameters": {
-        "content": "## Business Profile Scraper",
+        "content": "## Step 1: Business Profile Scraper",
         "height": 304,
         "width": 1680,
         "color": 4
@@ -1067,7 +1067,7 @@
       "typeVersion": 3.4,
       "position": [
         -32,
-        592
+        576
       ],
       "id": "fc845e41-996b-41e1-9f36-cc9c47e69bfe",
       "name": "Map Necessary Fields for Analysis"
@@ -1088,7 +1088,7 @@
       "typeVersion": 1,
       "position": [
         176,
-        592
+        576
       ],
       "id": "a2fa3075-6982-4d75-90bc-801940a2a4b3",
       "name": "Sort by Views Descending for Analysis"
@@ -1439,7 +1439,7 @@
       "typeVersion": 1.3,
       "position": [
         864,
-        928
+        912
       ],
       "id": "2a297dad-9ea0-4bb0-b324-8de2c1fe0bf2",
       "name": "Structured Output Parser"
@@ -1661,7 +1661,7 @@
       "typeVersion": 1.2,
       "position": [
         720,
-        928
+        912
       ],
       "id": "d490f2f4-d40a-4748-b889-63a3bed7d2cd",
       "name": "OpenAI Chat Model1",
@@ -1684,7 +1684,7 @@
       "typeVersion": 2.2,
       "position": [
         848,
-        592
+        576
       ],
       "id": "a68f7421-58d9-4af2-a8ff-338bee66d458",
       "name": "Individual Reels Analyzer"
@@ -1697,7 +1697,7 @@
       "typeVersion": 2,
       "position": [
         1600,
-        912
+        896
       ],
       "id": "765cd4cd-9b5b-450d-b8ad-5f5f6c4b548d",
       "name": "Prepare Email"
@@ -1714,7 +1714,7 @@
       "typeVersion": 2.2,
       "position": [
         1344,
-        592
+        576
       ],
       "id": "3feaf706-c77e-47d1-a007-4a4a85c78925",
       "name": "All Reels Analyzer"
@@ -1731,7 +1731,7 @@
       "typeVersion": 2.2,
       "position": [
         1648,
-        592
+        576
       ],
       "id": "d4393f3e-98f3-49ce-9e9f-11c78a9cadcc",
       "name": "Complete Analysis"
@@ -1744,7 +1744,7 @@
       "typeVersion": 2,
       "position": [
         592,
-        592
+        576
       ],
       "id": "95e491ca-e15d-418e-8329-ff8009eb6b3a",
       "name": "Set All IG Properties plus ER"
@@ -1757,7 +1757,7 @@
       "typeVersion": 2,
       "position": [
         1152,
-        592
+        576
       ],
       "id": "527a1a96-80fe-4f2f-96f0-b08eb92c6750",
       "name": "Extract All Reels into One"
@@ -1786,7 +1786,7 @@
       "typeVersion": 3.4,
       "position": [
         1744,
-        912
+        896
       ],
       "id": "02eaf8c7-da53-481f-915e-a70d400f6523",
       "name": "Return"
@@ -1826,7 +1826,7 @@
     {
       "parameters": {
         "content": "## Sort Data and Update Sheets from Reels",
-        "height": 304,
+        "height": 272,
         "width": 1984,
         "color": 5
       },
@@ -1850,7 +1850,7 @@
       "typeVersion": 1,
       "position": [
         -480,
-        528
+        512
       ],
       "id": "2fa14992-1773-43db-b79a-eb4b245ee92b",
       "name": "Sticky Note4"
@@ -1866,7 +1866,7 @@
       "typeVersion": 1,
       "position": [
         640,
-        848
+        832
       ],
       "id": "f5f15807-7864-4652-b215-a7fdb52269b8",
       "name": "Sticky Note5"
@@ -1882,7 +1882,7 @@
       "typeVersion": 1,
       "position": [
         800,
-        528
+        512
       ],
       "id": "b7c3ef28-64c6-4522-9845-05d131008167",
       "name": "Sticky Note6"
@@ -1898,7 +1898,7 @@
       "typeVersion": 1,
       "position": [
         1584,
-        848
+        832
       ],
       "id": "f7cfcb64-46c1-44a8-b55a-1a43aff5649c",
       "name": "Sticky Note7"
@@ -1909,7 +1909,7 @@
       "typeVersion": 1,
       "position": [
         -112,
-        960
+        944
       ],
       "id": "d01dbe28-c232-4536-b880-8dca73cc8c54",
       "name": "When clicking ‘Execute workflow’"
@@ -1942,6 +1942,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-09T14:56:17.000Z",
-  "versionId": "9a40b8aa-dabc-40fc-8770-6f3fdd66c6f3"
+  "updatedAt": "2025-09-09T19:28:41.000Z",
+  "versionId": "df394d9d-c588-4993-93e7-df42d952362f"
 }
