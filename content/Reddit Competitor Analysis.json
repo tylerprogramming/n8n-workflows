@@ -1,0 +1,1893 @@
+{
+  "active": false,
+  "connections": {
+    "Get Access Token": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Get Top Subreddit Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Post ID Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Comments and Post Info": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Comments Info": {
+      "main": [
+        [
+          {
+            "node": "Extract Comments and Post Info",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Failure Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Top Subreddit Posts": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Get Post ID Info": {
+      "main": [
+        [
+          {
+            "node": "Enrich with Post Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Post ID Failure Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enrich with Post Data": {
+      "main": [
+        [
+          {
+            "node": "Get Comments Info",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Enrich Post Failure Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Failure Log": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a record2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Post ID Failure Record": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Enrich Post Failure Record": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Format Json Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Json Output": {
+      "main": [
+        [
+          {
+            "node": "Create Success Workflow Record",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create or update a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Success Workflow Record": {
+      "main": [
+        []
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Access Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-29T02:38:21.367Z",
+  "id": "SrIfdVzpamEL59hC",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Reddit Competitor Analysis",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "/**\n * Reddit Post and Comment Processor\n * Pairs post data with comment data from separate n8n items\n */\n\nconst allInputs = $input.all();\nconst processedPosts = [];\n\n// Helper function to recursively extract all comments\nfunction extractAllComments(node, comments = []) {\n  if (!node) return comments;\n  \n  // Handle arrays\n  if (Array.isArray(node)) {\n    for (const n of node) {\n      extractAllComments(n, comments);\n    }\n    return comments;\n  }\n  \n  // Handle Listing structures\n  if (node.kind === 'Listing' && node.data?.children) {\n    for (const child of node.data.children) {\n      extractAllComments(child, comments);\n    }\n    return comments;\n  }\n  \n  // Handle actual comments (t1)\n  if (node.kind === 't1' && node.data) {\n    const d = node.data;\n    const body = d.body;\n    \n    // Filter out deleted/removed/empty comments and AutoModerator\n    if (typeof body === 'string' && \n        body.trim() && \n        body !== '[deleted]' && \n        body !== '[removed]' &&\n        d.author !== '[deleted]' &&\n        d.author !== 'AutoModerator') {\n      \n      comments.push({\n        author: d.author,\n        body: body,\n        score: d.ups || d.score || 0,\n        created: new Date(d.created_utc * 1000).toISOString(),\n        id: d.id,\n        parent_id: d.parent_id || null,\n        depth: d.depth || 0\n      });\n    }\n    \n    // Process replies recursively\n    if (d.replies && typeof d.replies === 'object' && d.replies.data?.children) {\n      for (const child of d.replies.data.children) {\n        extractAllComments(child, comments);\n      }\n    }\n  }\n  \n  return comments;\n}\n\n// First, separate posts from comments\nconst postItems = [];\nconst commentItems = [];\n\nfor (let i = 0; i < allInputs.length; i++) {\n  const inputItem = allInputs[i];\n  const data = inputItem.json;\n  \n  // Check if this is post data (contains t3) or comment data (contains t1)\n  if (data?.data?.children?.[0]?.kind === 't3') {\n    // This is post data\n    postItems.push({\n      index: i,\n      data: data\n    });\n    console.log(`Item ${i}: Found post data`);\n  } else if (data?.data?.children?.[0]?.kind === 't1' || data?.kind === 'Listing') {\n    // This is comment data\n    commentItems.push({\n      index: i,\n      data: data\n    });\n    console.log(`Item ${i}: Found comment data`);\n  }\n}\n\nconsole.log(`Found ${postItems.length} posts and ${commentItems.length} comment sets`);\n\n// Process each post and try to find its matching comments\nfor (let i = 0; i < postItems.length; i++) {\n  const postItem = postItems[i];\n  const postData = postItem.data.data.children[0].data;\n  \n  // Skip AutoModerator posts\n  if (postData.author === 'AutoModerator') {\n    console.log(`Post ${i}: Skipping AutoModerator post`);\n    continue;\n  }\n  \n  console.log(`Processing: \"${postData.title.substring(0, 50)}...\" by ${postData.author}`);\n  \n  // Try to find matching comments (usually the next item in the array)\n  let allComments = [];\n  \n  // Look for comment data that comes after this post\n  const nextIndex = postItem.index + 1;\n  const matchingCommentItem = commentItems.find(c => c.index === nextIndex);\n  \n  if (matchingCommentItem) {\n    console.log(`Found matching comments at index ${nextIndex}`);\n    allComments = extractAllComments(matchingCommentItem.data);\n    console.log(`Extracted ${allComments.length} comments`);\n  } else {\n    console.log(`No matching comments found for post at index ${postItem.index}`);\n  }\n  \n  // Sort comments by score and get top 10\n  const topComments = allComments\n    .sort((a, b) => b.score - a.score)\n    .slice(0, 5)\n    .map(comment => ({\n      author: comment.author,\n      body: comment.body.length > 500 ? comment.body.substring(0, 500) + '...' : comment.body,\n      score: comment.score,\n      created: comment.created\n    }));\n  \n  // Create processed post object\n  const post = {\n    // Post metadata\n    title: postData.title,\n    selftext: postData.selftext || '',\n    score: postData.ups || postData.score || 0,\n    upvote_ratio: postData.upvote_ratio || 0,\n    num_comments: postData.num_comments || 0,\n    author: postData.author,\n    created: new Date(postData.created_utc * 1000).toISOString(),\n    url: postData.url,\n    permalink: `https://reddit.com${postData.permalink}`,\n    post_id: postData.id,\n    subreddit: postData.subreddit || '',\n    \n    // Comments data\n    top_comments: topComments,\n    all_comments: allComments,\n    total_comments_extracted: allComments.length,\n    comment_texts: allComments.map(c => c.body)\n  };\n  \n  processedPosts.push(post);\n}\n\nconsole.log(`\\nProcessed ${processedPosts.length} posts with their comments`);\n\n// Return the processed posts\nreturn processedPosts;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2112,
+        -16
+      ],
+      "id": "8afa4f00-4d59-414d-ab52-557feda49040",
+      "name": "Extract Comments and Post Info"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.reddit.com/api/v1/access_token",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "n8n-workflow/1.0"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "client_credentials"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        288,
+        0
+      ],
+      "id": "2f1afe98-190d-481d-a88f-1c6840ab0f47",
+      "name": "Get Access Token",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "rUHD2VFn5ixfpCat",
+          "name": "Reddit Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldqSDOnSiaxVS5w",
+          "mode": "list",
+          "cachedResultName": "Settings",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbldqSDOnSiaxVS5w"
+        },
+        "filterByFormula": "=({platform} = 'reddit')",
+        "returnAll": false,
+        "limit": 1,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        480,
+        0
+      ],
+      "id": "3469310e-c73f-476d-b0ff-f80c23ebb3ed",
+      "name": "Search records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "handles",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        688,
+        0
+      ],
+      "id": "2ef7e09e-48fc-430e-a868-1b1618f88d65",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1312,
+        -32
+      ],
+      "id": "de6dcb52-d408-4e73-91ef-f913e4808f1e",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsZuHyp15YxYBIJ",
+          "mode": "list",
+          "cachedResultName": "Results",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblsZuHyp15YxYBIJ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "platform": "reddit",
+            "user": "={{ $json.author }}",
+            "post": "={{ $json.selftext }}",
+            "comments": "={{ $json.all_comments.map(comment => comment.body).join('\\n') }}",
+            "top_comments": "={{ $json.top_comments.map(comment => comment.body).join('\\n') }}",
+            "comments_score": "={{ $json.all_comments.map(comment => comment.score).sum() - $json.top_comments.map(comment => comment.score).sum() }}",
+            "top_comments_score": "={{ $json.top_comments.map(comment => comment.score).sum() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "platform",
+              "displayName": "platform",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "reddit",
+                  "value": "reddit"
+                },
+                {
+                  "name": "instagram",
+                  "value": "instagram"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "user",
+              "displayName": "user",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "post",
+              "displayName": "post",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "top_comments",
+              "displayName": "top_comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "top_comments_score",
+              "displayName": "top_comments_score",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "comments_score",
+              "displayName": "comments_score",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "settings_link",
+              "displayName": "settings_link",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2336,
+        -16
+      ],
+      "id": "619a846e-fa9e-473d-8fbd-45c6987389d5",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "89910185-72d2-4f33-a64d-5597347470ed",
+              "leftValue": "={{ $json.fields.log_type }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1520,
+        -384
+      ],
+      "id": "c07f12c7-5883-4809-aefa-89d8fe80ffda",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "url": "=https://oauth.reddit.com/r/n8n/comments/{{ $json.post_id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "sort",
+              "value": "top"
+            },
+            {
+              "name": "limit",
+              "value": "50"
+            },
+            {
+              "name": "raw_json",
+              "value": "1"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Get Access Token').first().json.access_token }}"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-workflow/1.0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1920,
+        -16
+      ],
+      "id": "5a6940e5-991e-4e5e-89c8-231844eea0a4",
+      "name": "Get Comments Info",
+      "onError": "continueErrorOutput",
+      "notes": "Error With Enriching Post IDs"
+    },
+    {
+      "parameters": {
+        "url": "=https://oauth.reddit.com/r/{{ $json.handles }}/top",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "t",
+              "value": "month"
+            },
+            {
+              "name": "limit",
+              "value": "25"
+            },
+            {
+              "name": "raw_json",
+              "value": "1"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Get Access Token').item.json.access_token }}"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-workflow/1.0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        0
+      ],
+      "id": "75730453-c98f-4c29-89c7-370ad5d4d66c",
+      "name": "Get Top Subreddit Posts",
+      "alwaysOutputData": true,
+      "notes": "Failure getting top subreddit posts"
+    },
+    {
+      "parameters": {
+        "jsCode": "const posts = $input.all()[0].json.data.children;\n  const threeMonthsAgo = new Date();\n  threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);\n\n  const filtered = posts\n    .filter(post => {\n      const postDate = new Date(post.data.created_utc * 1000);\n      return postDate >= threeMonthsAgo;\n    })\n    .map(post => ({\n      title: post.data.title,\n      score: post.data.score,\n      url: `https://reddit.com${post.data.permalink}`,\n      author: post.data.author,\n      created: new Date(post.data.created_utc * 1000).toISOString(),\n      comments: post.data.num_comments,\n      upvote_ratio: post.data.upvote_ratio\n    }))\n    .sort((a, b) => b.score - a.score);\n\n  return filtered.slice(0, 1); // Top 20 posts"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        -16
+      ],
+      "id": "a0a36208-60f1-4a59-9f92-839c296a853a",
+      "name": "Get Post ID Info",
+      "onError": "continueErrorOutput",
+      "notes": "Error Extracting post information "
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract post ID from permalink\n  const posts = $input.all();\n  const enrichedPosts = [];\n\n  for (const post of posts) {\n    // Extract ID from permalink: /r/n8n/comments/abc123/title/ -> abc123\n    const permalink = post.json.url;\n    const postId = permalink.split('/comments/')[1]?.split('/')[0];\n\n    enrichedPosts.push({\n      json: {\n        ...post.json,\n        post_id: postId\n      }\n    });\n  }\n\n  return enrichedPosts;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1728,
+        -16
+      ],
+      "id": "d6b49d63-5057-4302-831b-316b5d3d733c",
+      "name": "Enrich with Post Data",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblszioVsSoRVufgQ",
+          "mode": "list",
+          "cachedResultName": "logging",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblszioVsSoRVufgQ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "details": "=Node: Get Comments Request - {{ $json.url }}",
+            "log_message": "={{ $json.error.message }}",
+            "log_type": "error"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "log_message",
+              "displayName": "log_message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "log_type",
+              "displayName": "log_type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "info",
+                  "value": "info"
+                },
+                {
+                  "name": "warning",
+                  "value": "warning"
+                },
+                {
+                  "name": "error",
+                  "value": "error"
+                },
+                {
+                  "name": "debug",
+                  "value": "debug"
+                },
+                {
+                  "name": "other",
+                  "value": "other"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "related_settings_id",
+              "displayName": "related_settings_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "details",
+              "displayName": "details",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2336,
+        256
+      ],
+      "id": "6fadb598-0aec-446a-96f4-0e5608512210",
+      "name": "Create Failure Log",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblszioVsSoRVufgQ",
+          "mode": "list",
+          "cachedResultName": "logging",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblszioVsSoRVufgQ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "log_message": "No data for this subreddit",
+            "log_type": "info",
+            "details": "={{ $('Split Out').item.json.handles }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "log_message",
+              "displayName": "log_message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "log_type",
+              "displayName": "log_type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "info",
+                  "value": "info"
+                },
+                {
+                  "name": "warning",
+                  "value": "warning"
+                },
+                {
+                  "name": "error",
+                  "value": "error"
+                },
+                {
+                  "name": "debug",
+                  "value": "debug"
+                },
+                {
+                  "name": "success",
+                  "value": "success"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "related_settings_id",
+              "displayName": "related_settings_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "details",
+              "displayName": "details",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1552,
+        256
+      ],
+      "id": "cc10820c-b98b-48a3-b0e9-867022b8c9f5",
+      "name": "Create a record2",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "77c5fff5-e96b-4525-951c-b28077d6d0ea",
+              "leftValue": "={{ $json.data.children }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1088,
+        0
+      ],
+      "id": "4ded4bf5-6773-469c-bde7-9535abe74a39",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblszioVsSoRVufgQ",
+          "mode": "list",
+          "cachedResultName": "logging",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblszioVsSoRVufgQ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "log_type": "error",
+            "log_message": "Couldn't retrieve Post information",
+            "details": "Node: Get Post ID Info "
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "log_message",
+              "displayName": "log_message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "log_type",
+              "displayName": "log_type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "info",
+                  "value": "info"
+                },
+                {
+                  "name": "warning",
+                  "value": "warning"
+                },
+                {
+                  "name": "error",
+                  "value": "error"
+                },
+                {
+                  "name": "debug",
+                  "value": "debug"
+                },
+                {
+                  "name": "success",
+                  "value": "success"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "related_settings_id",
+              "displayName": "related_settings_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "details",
+              "displayName": "details",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1808,
+        256
+      ],
+      "id": "42942455-69f5-4d69-bc86-475168cc32bd",
+      "name": "Create Post ID Failure Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblszioVsSoRVufgQ",
+          "mode": "list",
+          "cachedResultName": "logging",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblszioVsSoRVufgQ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "log_message": "Couldn't enrich post with data",
+            "log_type": "error",
+            "details": "Node: Enrich with Post Data"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "log_message",
+              "displayName": "log_message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "log_type",
+              "displayName": "log_type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "info",
+                  "value": "info"
+                },
+                {
+                  "name": "warning",
+                  "value": "warning"
+                },
+                {
+                  "name": "error",
+                  "value": "error"
+                },
+                {
+                  "name": "debug",
+                  "value": "debug"
+                },
+                {
+                  "name": "success",
+                  "value": "success"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "related_settings_id",
+              "displayName": "related_settings_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "details",
+              "displayName": "details",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2064,
+        256
+      ],
+      "id": "76aa104d-cf83-4bb7-b97b-a313a174a500",
+      "name": "Create Enrich Post Failure Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a senior content strategist for technical creators. Analyze the provided Reddit post and its top comments to explain *why it performed*, what to copy, what to avoid, and how to outperform it on YouTube/Reddit/LinkedIn/IG Shorts.\n\nOperate under these rules:\n- Use ONLY the provided text. Do not invent facts or fetch external info.\n- Be specific. Quote short phrases from the source when helpful.\n- If data is missing, return null for that field and add an item to `missing_data`.\n- Prefer concise bullet points. No fluff.\n\nINPUTS:\nPOST_TEXT:\n{{ $json.fields.post }}\n\nTOP_COMMENTS:\n{{ $json.fields.top_comments }}\n\n\nTASKS:\n1) EXTRACT & CLASSIFY LINKS\n   - From the post and comments, extract all URLs. Classify each into one of:\n     [\"YouTube\",\"GitHub\",\"Docs\",\"Product\",\"Blog/Article\",\"Image\",\"Dataset\",\"Tool\",\"Other\"].\n   - For each link, include: {url, domain, title_if_present, context_snippet (≤20 words), class}.\n\n2) CONTENT TEARDOWN (WHY IT WORKED)\n   - Hooks: identify the primary hook(s). Label patterns e.g., [\"numbers\",\"novelty\",\"controversy\",\"utility\",\"before→after\",\"challenge\",\"trend/jargon\",\"case study\"] and quote ≤12-word evidence.\n   - Value Proposition: what outcome is promised or implied? who benefits?\n   - Mechanism: how it was built/what it does (from text only).\n   - Proof Signals: awards, metrics, social proof, code/results screenshots (if mentioned).\n   - Complexity & Audience Fit: \"beginner\" | \"intermediate\" | \"advanced\" with rationale.\n   - Format Advantages: list features that boost engagement (e.g., bulleting, code blocks, step list, visuals, CTA, timestamps).\n   - Topic Entities & Keywords: top 8 terms/phrases (lowercase).\n   - Timing/Context (if meta present): weekday/time hints, crosspost notes, flair relevance.\n\n3) COMMENT VALIDATION & PAIN POINTS\n   - Cluster comments into up to 6 themes. For each theme: {theme_name, count, 1–2 short representative quotes, sentiment: \"positive\"|\"neutral\"|\"negative\"}.\n   - Extract explicit asks (e.g., “repo?”, “tutorial?”, “errors?”, “pricing?”).\n   - List top problems, confusions, or objections users expressed.\n\n4) PERFORMANCE SCORING (0–100)\n   - Score using this rubric (include sub-scores and 1-line rationale each):\n     HOOK (0–20), UTILITY (0–20), NOVELTY (0–15), PROOF (0–15),\n     CLARITY (0–10), CREDIBILITY (0–10), COMMUNITY_FIT (0–10).\n   - Provide a Total and 3 “performance drivers” (what most likely lifted results).\n\n5) ACTION PLAN TO OUTPERFORM\n   - Content Gaps: what’s missing or under-explained that we can add?\n   - 7 Content Ideas tailored for YouTube Long, Shorts/Reels, and Reddit posts (label each with channel).\n     For each idea: {title, hook_line (≤16 words), angle, 3–5 step outline, suggested assets [repo, demo, dataset], CTA}.\n   - Thumbnail/First-Frame Text (≤6 words) for top 3 video ideas.\n   - Comment Strategy: 5 pinned/reply templates to spark further discussion.\n   - Experiment Ideas: 5 quick A/B tests (hook phrasing, title structure, asset order, proof placement, CTA timing).\n\n6) DATA HYGIENE\n   - `missing_data`: list what additional fields would improve the analysis next run (e.g., exact post time, author karma, outbound click counts).\n   - `assumptions`: list any cautious inferences you made.\n\nOUTPUT:\nReturn EXACTLY the following JSON. Do not add extra top-level keys and do not include markdown fences.\n\n{\n  \"post_summary\": {\n    \"one_liner\": \"\",\n    \"audience_level\": \"beginner|intermediate|advanced\",\n    \"primary_hook_patterns\": [],\n    \"value_proposition\": \"\",\n    \"mechanism\": \"\",\n    \"format_advantages\": [],\n    \"topic_entities_keywords\": []\n  },\n  \"links\": [\n    {\n      \"url\": \"\",\n      \"domain\": \"\",\n      \"title_if_present\": null,\n      \"context_snippet\": \"\",\n      \"class\": \"YouTube|GitHub|Docs|Product|Blog/Article|Image|Dataset|Tool|Other\"\n    }\n  ],\n  \"comment_analysis\": {\n    \"themes\": [\n      {\n        \"theme_name\": \"\",\n        \"count\": 0,\n        \"representative_quotes\": [],\n        \"sentiment\": \"positive|neutral|negative\"\n      }\n    ],\n    \"explicit_asks\": [],\n    \"pain_points\": []\n  },\n  \"performance_scoring\": {\n    \"HOOK\": { \"score\": 0, \"why\": \"\" },\n    \"UTILITY\": { \"score\": 0, \"why\": \"\" },\n    \"NOVELTY\": { \"score\": 0, \"why\": \"\" },\n    \"PROOF\": { \"score\": 0, \"why\": \"\" },\n    \"CLARITY\": { \"score\": 0, \"why\": \"\" },\n    \"CREDIBILITY\": { \"score\": 0, \"why\": \"\" },\n    \"COMMUNITY_FIT\": { \"score\": 0, \"why\": \"\" },\n    \"TOTAL\": 0,\n    \"top_performance_drivers\": []\n  },\n  \"action_plan\": {\n    \"content_gaps\": [],\n    \"ideas\": [\n      {\n        \"channel\": \"YouTube Long|Shorts|Reddit\",\n        \"title\": \"\",\n        \"hook_line\": \"\",\n        \"angle\": \"\",\n        \"outline\": [\"\", \"\", \"\"],\n        \"suggested_assets\": [\"repo\",\"demo\",\"dataset\"],\n        \"cta\": \"\"\n      }\n    ],\n  },\n  \"data_hygiene\": {\n    \"missing_data\": [],\n    \"assumptions\": []\n  }\n}",
+        "options": {
+          "systemMessage": "You are a competitive analysis expert"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1728,
+        -400
+      ],
+      "id": "121049c0-4670-40ef-8b80-c09eb545fe10",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1648,
+        -240
+      ],
+      "id": "1e0f61bc-407d-4e03-83f5-12b31b55250c",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "marROkDq8FtIIcmK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4a727fde-d1d8-4ce1-b71d-b51d2c05dc31",
+              "name": "post_summary",
+              "value": "={{ JSON.stringify(JSON.parse($json.output).post_summary) }}",
+              "type": "string"
+            },
+            {
+              "id": "b4643318-eb5d-4760-b256-e7692e53d132",
+              "name": "=links",
+              "value": "={{ JSON.parse($json.output).links.find(link => link.domain === 'www.youtube.com')?.url }}",
+              "type": "string"
+            },
+            {
+              "id": "03f8d5d9-b7b6-40e0-9e28-ca1986e6f92f",
+              "name": "comment_analysis",
+              "value": "={{ JSON.stringify(JSON.parse($json.output).comment_analysis) }}",
+              "type": "string"
+            },
+            {
+              "id": "cfa60103-be54-4611-b63e-e6d5a0900769",
+              "name": "=performance_scoring",
+              "value": "={{ JSON.stringify(JSON.parse($json.output).performance_scoring) }}",
+              "type": "string"
+            },
+            {
+              "id": "93a4905e-57c7-4f13-99e0-b2606503f4bf",
+              "name": "action_plan",
+              "value": "={{ JSON.stringify(JSON.parse($json.output).action_plan) }}",
+              "type": "string"
+            },
+            {
+              "id": "b3c16ca6-83e7-4f8b-872b-e34861b9fdc5",
+              "name": "data_hygiene",
+              "value": "={{ JSON.stringify(JSON.parse($json.output).data_hygiene) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2048,
+        -400
+      ],
+      "id": "664b56d3-2448-4b34-8d6b-318246a53d9c",
+      "name": "Format Json Output"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblszioVsSoRVufgQ",
+          "mode": "list",
+          "cachedResultName": "logging",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblszioVsSoRVufgQ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "log_type": "success",
+            "log_message": "Successfully completed workflow"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "log_message",
+              "displayName": "log_message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "log_type",
+              "displayName": "log_type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "info",
+                  "value": "info"
+                },
+                {
+                  "name": "warning",
+                  "value": "warning"
+                },
+                {
+                  "name": "error",
+                  "value": "error"
+                },
+                {
+                  "name": "debug",
+                  "value": "debug"
+                },
+                {
+                  "name": "success",
+                  "value": "success"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "related_settings_id",
+              "displayName": "related_settings_id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "details",
+              "displayName": "details",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2320,
+        -512
+      ],
+      "id": "2d7fbda5-5059-4d82-b3c7-ce752bbcaa89",
+      "name": "Create Success Workflow Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsZuHyp15YxYBIJ",
+          "mode": "list",
+          "cachedResultName": "Results",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblsZuHyp15YxYBIJ"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "platform": "reddit",
+            "links": "={{ $json.links }}",
+            "post_summary": "={{ $json.post_summary }}",
+            "comment_analysis": "={{ $json.comment_analysis }}",
+            "performance_scoring": "={{ $json.performance_scoring }}",
+            "action_plan": "={{ $json.action_plan }}",
+            "data_hygiene": "={{ $json.data_hygiene }}",
+            "id": "={{ $('Create a record').item.json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "platform",
+              "displayName": "platform",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "reddit",
+                  "value": "reddit"
+                },
+                {
+                  "name": "instagram",
+                  "value": "instagram"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "user",
+              "displayName": "user",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "post",
+              "displayName": "post",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "top_comments",
+              "displayName": "top_comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "top_comments_score",
+              "displayName": "top_comments_score",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "comments",
+              "displayName": "comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "comments_score",
+              "displayName": "comments_score",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "settings_link",
+              "displayName": "settings_link",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "post_summary",
+              "displayName": "post_summary",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "links",
+              "displayName": "links",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "comment_analysis",
+              "displayName": "comment_analysis",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "performance_scoring",
+              "displayName": "performance_scoring",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "action_plan",
+              "displayName": "action_plan",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "data_hygiene",
+              "displayName": "data_hygiene",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2320,
+        -304
+      ],
+      "id": "75eced5b-0fa9-47ed-b957-fdc56203dee1",
+      "name": "Create or update a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Setup Reddit Extraction",
+        "height": 272,
+        "width": 1200,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -96
+      ],
+      "id": "8ffff40c-9012-4130-aafc-afa1f9b0c429",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Error Logging",
+        "height": 272,
+        "width": 1264,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        192
+      ],
+      "id": "4e4251b3-311e-43e0-a564-21ad0bfeba39",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Loop extracting Post ID Information including top comments",
+        "height": 272,
+        "width": 1264
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        -96
+      ],
+      "id": "f4dfe48a-e3e4-441f-bb89-604bb5b104b6",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Create Analysis and Save/Update",
+        "height": 432,
+        "width": 1264,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        -544
+      ],
+      "id": "9d51b693-ad20-4a7f-a15f-4ac139b421ea",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtHour": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        0
+      ],
+      "id": "bddd80ee-53ff-4d10-a25f-7331ac0ef808",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n-workflows",
+  "repo_owner": "tylerprogramming",
+  "repo_path": "https://github.com/tylerprogramming/n8n-workflows",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-29T02:38:21.371Z",
+      "updatedAt": "2025-08-29T02:38:21.371Z",
+      "role": "workflow:owner",
+      "workflowId": "SrIfdVzpamEL59hC",
+      "projectId": "x0No9CeX7Uf2gClq"
+    }
+  ],
+  "staticData": null,
+  "sub_path": "content",
+  "tags": [
+    {
+      "createdAt": "2025-09-07T04:22:44.982Z",
+      "updatedAt": "2025-09-07T04:22:44.982Z",
+      "id": "93xoGltPT6COu6ov",
+      "name": "content"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-09T14:55:59.000Z",
+  "versionId": "ebf17887-31cb-4aa8-be7c-ac08de00e6bf"
+}
