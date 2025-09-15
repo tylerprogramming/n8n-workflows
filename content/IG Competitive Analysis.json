@@ -441,7 +441,13 @@
     },
     "When clicking ‘Execute workflow’": {
       "main": [
-        []
+        [
+          {
+            "node": "Get IG Scraper Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -676,7 +682,7 @@
       "typeVersion": 1.2,
       "position": [
         -448,
-        -32
+        96
       ],
       "id": "d5ee1d7b-1dbc-4eb9-b0b4-c7f4c95eb257",
       "name": "Schedule Trigger"
@@ -1654,7 +1660,7 @@
           "cachedResultName": "gpt-5"
         },
         "options": {
-          "timeout": 300000
+          "timeout": 600000
         }
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
@@ -1908,8 +1914,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -112,
-        944
+        -448,
+        -64
       ],
       "id": "d01dbe28-c232-4536-b880-8dca73cc8c54",
       "name": "When clicking ‘Execute workflow’"
@@ -1942,6 +1948,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-09T19:28:41.000Z",
-  "versionId": "df394d9d-c588-4993-93e7-df42d952362f"
+  "updatedAt": "2025-09-14T19:46:14.000Z",
+  "versionId": "d4618e40-3d62-4a7b-b056-332994f7d5d4"
 }
