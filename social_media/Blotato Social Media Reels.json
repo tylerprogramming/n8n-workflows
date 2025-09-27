@@ -1,0 +1,2836 @@
+{
+  "active": false,
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Upload media",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Move file": {
+      "main": [
+        [
+          {
+            "node": "Download File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Blotato Success Record": {
+      "main": [
+        [
+          {
+            "node": "Move file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Instagram Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "LinkedIn Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Tiktok Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "YouTube Short Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Get Latest Tiktok Record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Latest LinkedIn Record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Latest Youtube Short Record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Latest IG Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram Agent": {
+      "main": [
+        [
+          {
+            "node": "Create IG Reel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn Agent": {
+      "main": [
+        [
+          {
+            "node": "Create LinkedIn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tiktok Agent": {
+      "main": [
+        [
+          {
+            "node": "Create Tiktok",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Tiktok": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Create LinkedIn Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create IG Reel": {
+      "main": [
+        [
+          {
+            "node": "Create Instagram Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download File": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Latest Youtube Short Record": {
+      "main": [
+        [
+          {
+            "node": "YouTube Short Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Latest IG Record": {
+      "main": [
+        [
+          {
+            "node": "Instagram Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Latest Tiktok Record": {
+      "main": [
+        [
+          {
+            "node": "Tiktok Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Latest LinkedIn Record": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload media": {
+      "main": [
+        [
+          {
+            "node": "Create Blotato Success Record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Blotato Failure Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube Short Agent": {
+      "main": [
+        [
+          {
+            "node": "Create post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create post": {
+      "main": [
+        [
+          {
+            "node": "Create Youtube Short Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Platforms": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "Get Platforms",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Update Media Record (Success)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Media Record (Failure)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-24T20:08:37.177Z",
+  "id": "w9dLn3XrFCpxB4hp",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Blotato Social Media Reels",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1mpBqg18Otd-UnmgAL_FlAWa8cS51ONYJ",
+          "mode": "list",
+          "cachedResultName": "media_not_uploaded",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1mpBqg18Otd-UnmgAL_FlAWa8cS51ONYJ"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -48
+      ],
+      "id": "b0b1db5c-204a-4388-91d9-f93a0f90edfd",
+      "name": "Google Drive Trigger",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "EaQRNin7iryown3y",
+          "name": "Google Drive account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Google Drive Trigger').item.json.id }}",
+          "mode": "id"
+        },
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1aGqd9_TowK3xtU1u84bevqgKiDVmaDIu",
+          "mode": "id"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -256,
+        160
+      ],
+      "id": "b778ef64-fa4c-4e8a-8c19-5b3f2661b78f",
+      "name": "Move file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "EaQRNin7iryown3y",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblpN39rpBATJW3YV",
+          "mode": "list",
+          "cachedResultName": "media-logging",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblpN39rpBATJW3YV"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Log Level": "ERROR",
+            "Component": "BlotatoClient",
+            "Message": "Error uploading media",
+            "Timestamp": "2025-08-24T16:18:58"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Log ID",
+              "displayName": "Log ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Log Level",
+              "displayName": "Log Level",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "INFO",
+                  "value": "INFO"
+                },
+                {
+                  "name": "ERROR",
+                  "value": "ERROR"
+                },
+                {
+                  "name": "WARNING",
+                  "value": "WARNING"
+                },
+                {
+                  "name": "DEBUG",
+                  "value": "DEBUG"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Component",
+              "displayName": "Component",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "MediaService",
+                  "value": "MediaService"
+                },
+                {
+                  "name": "GoogleDriveService",
+                  "value": "GoogleDriveService"
+                },
+                {
+                  "name": "BlotatoClient",
+                  "value": "BlotatoClient"
+                },
+                {
+                  "name": "PublishingService",
+                  "value": "PublishingService"
+                },
+                {
+                  "name": "FolderMonitor",
+                  "value": "FolderMonitor"
+                },
+                {
+                  "name": "ScheduleAutomation",
+                  "value": "ScheduleAutomation"
+                },
+                {
+                  "name": "TranscriptionAutomation",
+                  "value": "TranscriptionAutomation"
+                },
+                {
+                  "name": "VideoTranscription",
+                  "value": "VideoTranscription"
+                },
+                {
+                  "name": "DailyAutomation",
+                  "value": "DailyAutomation"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Session ID",
+              "displayName": "Session ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Request Data",
+              "displayName": "Request Data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Response Data",
+              "displayName": "Response Data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error Code",
+              "displayName": "Error Code",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Stack Trace",
+              "displayName": "Stack Trace",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "User Agent",
+              "displayName": "User Agent",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        368,
+        -128
+      ],
+      "id": "3e9f59a8-7718-4125-b684-30cef1c2e7b3",
+      "name": "Create Blotato Failure Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsWPXiVDpPVPxrK",
+          "mode": "list",
+          "cachedResultName": "video-uploads",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblsWPXiVDpPVPxrK"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Blotato Media URL": "={{ $json.url }}",
+            "Upload Status": "Success",
+            "Upload Time": "={{ $now.format('yyyy-MM-dd') }}",
+            "Google Drive File ID": "={{ $('Google Drive Trigger').item.json.id }}",
+            "Google Drive URL": "={{ $('Google Drive Trigger').item.json.webContentLink }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Upload ID",
+              "displayName": "Upload ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Google Drive URL",
+              "displayName": "Google Drive URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Google Drive File ID",
+              "displayName": "Google Drive File ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Converted URL",
+              "displayName": "Converted URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Blotato Media URL",
+              "displayName": "Blotato Media URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Upload Status",
+              "displayName": "Upload Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Success",
+                  "value": "Success"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                },
+                {
+                  "name": "Processing",
+                  "value": "Processing"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Upload Time",
+              "displayName": "Upload Time",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Social Account",
+              "displayName": "Social Account",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "video-publications",
+              "displayName": "video-publications",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcription",
+              "displayName": "Transcription",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcription Status",
+              "displayName": "Transcription Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Processing",
+                  "value": "Processing"
+                },
+                {
+                  "name": "Complete",
+                  "value": "Complete"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        176,
+        -80
+      ],
+      "id": "66b23644-eaf1-401a-a65c-b03fb683b408",
+      "name": "Create Blotato Success Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        576
+      ],
+      "id": "c65e4ada-5f5f-4cc5-a7c7-dc77a4a2cf04",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "marROkDq8FtIIcmK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Platforms }}",
+                    "rightValue": "tiktok",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "dbd30f6f-44ab-4ea2-807d-12c594adc15b"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "tiktok"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8ef43a3e-3045-4d32-85ff-8b04457823de",
+                    "leftValue": "={{ $json.Platforms }}",
+                    "rightValue": "linkedin",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "linkedin"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "866b6a62-18f7-4352-86e4-52c3c603a3df",
+                    "leftValue": "={{ $json.Platforms }}",
+                    "rightValue": "youtube",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "youtube"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a0a999d4-f4ad-4971-a081-466eb156d080",
+                    "leftValue": "={{ $json.Platforms }}",
+                    "rightValue": "instagram",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "instagram"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        720,
+        432
+      ],
+      "id": "84cc6416-7e32-4d94-94f3-5246f62b330f",
+      "name": "Switch",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=I need you to take the transcript: {{ $json.Transcription }} and create a well established instagram post.\n\nHere is an example of one that did very well from another creator: \n\nComment \"PROMPTS\" to check out these AI System prompts used in software of Top AI Companies.\n\nSomeone just leaked the full system prompts from some of the biggest AI tools out there—Cursor, Perplexity, Manus, Lovable, and a whole bunch more. We’re not talking a few lines of text.\n\nWe’re talking over 10,000 lines of carefully written prompts. The same kind of stuff companies usually guard like treasure. The same stuff people pay hundreds to get a tiny glimpse of.\n\nAnd now? It’s sitting in a public GitHub repo for anyone to check out.\n\nHere’s why that matters. System prompts are like the script behind the movie. They tell the AI how to think, act, and respond. They shape personality, tone, reasoning, even memory. Most of us only ever see the end result. But this leak? It pulls back the curtain and shows the hidden machinery.\n\nInside the repo, you’ll find prompts from v0, Cursor, Manus, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Trae AI, Cluely, Perplexity, Xcode, Spawn, and Orchids.app. That’s not just one playbook—it’s a whole library of strategies from some of the smartest teams in the AI world.\n\nBut, why does this matter? Because reading these prompts can:\n\n1. Show you exactly how top AI companies structure conversations\n2. Teach you little tricks for controlling style, tone, memory, and reasoning\n3. Help you practice your prompt-writing skills\n4. Give you inspiration to build your own AI-powered product\n\nThink of it like sneaking into the kitchens of top chefs. You don’t just taste the dish—you see exactly how it’s made. For developers, founders, or anyone curious about AI, that’s priceless.\n\nI remember the first time I read through a leaked system prompt. It felt less like copying answers and more like learning how the teacher thinks. That’s the real value here. Not the text alone, but the mindset behind it.\n\n#prompting #systemprompts #github #cursorai #Lovableai #manusai #perplexity #windsurfai #traeai #ainews #aitool #aiindia #aicommunity #nicksaraev #aicoding\n\nNow, of course don't copy this, but just use the framework for it.  Take the trascript, and from that also come up with hashtags.  Make sure to use #tylerreedai as one, #aiagents and #automation.\n\nI need you to output in json:\n\n{\n  \"post\": the post\n}",
+        "options": {
+          "systemMessage": "You are an expert instagram reel and post creator."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1264,
+        432
+      ],
+      "id": "f34f1b5e-a11e-4aaf-b7a8-d763316b143a",
+      "name": "Instagram Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=I need you to take the transcript: {{ $json.Transcription }} and create a well established tiktok post.\n\nHere is an example of one that did very well from another creator: \n\nTake a photo of your receipt, and AI automatically pulls out important info. It saves everything neatly in a spreadsheet, then texts you feedback right on WhatsApp. Super simple. No tech skills needed! #aiautomation #n8n #accounting\n\n-------------\n\nensure you have the invite to my skool community: https://www.skool.com/the-ai-agency-5370/about?ref=5d5a1d6a417649a2965a997cf2b9b279\n\nNow, of course don't copy this, but just use the framework for it.  Take the transcript, and use hashtags: #n8n #automation #aiagents #aiautomation\n\nIn total, it should only be at most 1 sentence.  Use proper new lines and pronunciation!\n\nONLY 1 small sentence, and no more than 5 hashtags!\n\nI need you to output in json:\n\n{\n  \"post\": the post\n}",
+        "options": {
+          "systemMessage": "You are an expert tiktok creator."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1264,
+        -96
+      ],
+      "id": "f57881bd-30b0-49d9-a929-621eabb663e3",
+      "name": "Tiktok Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=I need you to take the transcript: {{ $json.Transcription }} and create a well established linkedin post.\n\nIt should be simple, just take the steps from the transcript on what it is using right finger emojis, don't use hyphens, and don't speak in third person.  \n\nensure you have the invite to my skool community: https://www.skool.com/the-ai-agency-5370/about?ref=5d5a1d6a417649a2965a997cf2b9b279\n\nNow, of course don't copy this, but just use the framework for it.  Take the transcript, and use hashtags: #n8n #automation #aiagents #aiautomation.\n\nUse proper new lines and pronunciation!\n\nI need you to output in json:\n\n{\n  \"post\": the post\n}",
+        "options": {
+          "systemMessage": "You are an expert linkedin reel and post creator."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1264,
+        80
+      ],
+      "id": "e91a58b3-fecc-4ac5-a845-29ef1cdefcf9",
+      "name": "LinkedIn Agent"
+    },
+    {
+      "parameters": {
+        "accountId": {
+          "__rl": true,
+          "value": "12074",
+          "mode": "list",
+          "cachedResultName": "tylerreedai",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/12074"
+        },
+        "postContentText": "={{ $json.output.parseJson().post }}",
+        "postContentMediaUrls": "={{ $('Get Latest IG Record').item.json['Blotato Media URL'] }}",
+        "options": {
+          "instagramMediaType": "reel"
+        }
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [
+        1616,
+        432
+      ],
+      "id": "fc410b89-a515-43a0-b388-cfba13d32a80",
+      "name": "Create IG Reel",
+      "credentials": {
+        "blotatoApi": {
+          "id": "3CI22h5nnw84VtGe",
+          "name": "Blotato account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "platform": "tiktok",
+        "accountId": {
+          "__rl": true,
+          "value": "13354",
+          "mode": "list",
+          "cachedResultName": "codewithtyler",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/13354"
+        },
+        "postContentText": "={{ $json.output.parseJson().post }}",
+        "postContentMediaUrls": "={{ $('Get Latest Tiktok Record').item.json['Blotato Media URL'] }}",
+        "postCreateTiktokOptionDisabledStitch": "={{ false }}",
+        "postCreateTiktokOptionAutoAddMusic": true,
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [
+        1616,
+        -96
+      ],
+      "id": "68ceefa8-0259-42ce-941f-adb2bd31a94b",
+      "name": "Create Tiktok",
+      "credentials": {
+        "blotatoApi": {
+          "id": "3CI22h5nnw84VtGe",
+          "name": "Blotato account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "platform": "linkedin",
+        "accountId": {
+          "__rl": true,
+          "value": "4987",
+          "mode": "list",
+          "cachedResultName": "Tyler Reed",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/4987"
+        },
+        "postContentText": "={{ $json.output.parseJson().post }}",
+        "postContentMediaUrls": "={{ $('Get Latest LinkedIn Record').item.json['Blotato Media URL'] }}",
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [
+        1616,
+        80
+      ],
+      "id": "0e6a6b26-114e-49ec-8784-c8fd821909c0",
+      "name": "Create LinkedIn",
+      "credentials": {
+        "blotatoApi": {
+          "id": "3CI22h5nnw84VtGe",
+          "name": "Blotato account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblMmgJ4Xc3j26uxP",
+          "mode": "list",
+          "cachedResultName": "video-publications",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblMmgJ4Xc3j26uxP"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Post Submission ID": "={{ $json.postSubmissionId }}",
+            "Post Text": "={{ $('Tiktok Agent').first().json.output.parseJson().post }}",
+            "Publication Status": "Success",
+            "Scheduled Date": "2025-08-26T22:26:28",
+            "Platform": "tiktok",
+            "Video Upload Record": "={{ $('Search records').item.json['Upload ID'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Id",
+              "displayName": "Id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Post Submission ID",
+              "displayName": "Post Submission ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Post Text",
+              "displayName": "Post Text",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Publication Status",
+              "displayName": "Publication Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Success",
+                  "value": "Success"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                },
+                {
+                  "name": "Pending",
+                  "value": "Pending"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Published At",
+              "displayName": "Published At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Scheduled Date",
+              "displayName": "Scheduled Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Video Upload Record",
+              "displayName": "Video Upload Record",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1872,
+        -112
+      ],
+      "id": "29ca9bc6-1016-450d-aaae-965d802e5114",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Google Drive Trigger').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -80,
+        160
+      ],
+      "id": "41cd9621-e19f-4099-bbd2-1dead1c0c4d0",
+      "name": "Download File",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "EaQRNin7iryown3y",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsWPXiVDpPVPxrK",
+          "mode": "list",
+          "cachedResultName": "video-uploads",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblsWPXiVDpPVPxrK"
+        },
+        "returnAll": false,
+        "limit": 1,
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "Upload ID",
+              "direction": "desc"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        976,
+        256
+      ],
+      "id": "f449fb43-c989-498f-a936-e46a6b0b0caf",
+      "name": "Get Latest Youtube Short Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsWPXiVDpPVPxrK",
+          "mode": "list",
+          "cachedResultName": "video-uploads",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblsWPXiVDpPVPxrK"
+        },
+        "returnAll": false,
+        "limit": 1,
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "Upload ID",
+              "direction": "desc"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        976,
+        432
+      ],
+      "id": "20b1f3e9-9f25-440c-aabe-a9c4849395c4",
+      "name": "Get Latest IG Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsWPXiVDpPVPxrK",
+          "mode": "list",
+          "cachedResultName": "video-uploads",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblsWPXiVDpPVPxrK"
+        },
+        "returnAll": false,
+        "limit": 1,
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "Upload ID",
+              "direction": "desc"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        976,
+        -96
+      ],
+      "id": "e9a9ad18-9fa7-4058-8e45-4514d298b9ae",
+      "name": "Get Latest Tiktok Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsWPXiVDpPVPxrK",
+          "mode": "list",
+          "cachedResultName": "video-uploads",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblsWPXiVDpPVPxrK"
+        },
+        "returnAll": false,
+        "limit": 1,
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "Upload ID",
+              "direction": "desc"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        976,
+        80
+      ],
+      "id": "fdb940e2-7d85-4879-bf5b-7e043e10194b",
+      "name": "Get Latest LinkedIn Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Knowledge and Post",
+        "height": 848,
+        "width": 1504,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        544,
+        -160
+      ],
+      "id": "ee85a96f-a4fc-4990-9e8c-1b84feb5f2d1",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 3PM Daily Schedule",
+        "height": 304,
+        "width": 832,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        384
+      ],
+      "id": "9f85a101-810c-4108-aae1-25e0992aec94",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Drive Trigger for Blotato Media",
+        "height": 512,
+        "width": 832,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        -160
+      ],
+      "id": "5576674e-c634-4369-a81c-68d0acc9460c",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "mediaUrl": "={{ $json.webContentLink }}"
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        -64
+      ],
+      "id": "8a2fb312-7344-4fef-b7b8-4d12d6047fe8",
+      "name": "Upload media",
+      "alwaysOutputData": true,
+      "credentials": {
+        "blotatoApi": {
+          "id": "3CI22h5nnw84VtGe",
+          "name": "Blotato account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=I need you to take the transcript: {{ $json.Transcription }} and create a very simple youtube short post.\n\nJust put the skool community in the description.\n\nensure you have the invite to my FREE skool community: https://www.skool.com/the-ai-agency-5370/about?ref=5d5a1d6a417649a2965a997cf2b9b279\n\nNow, of course don't copy this, but just use the framework for it.  Take the transcript, and use hashtags: #n8n #automation #aiagents #aiautomation.\n\nThe title should be short and sweet and have a SIMPLE hook.  Shouldn't be longer than 7 words.\n\nI need you to output in json:\n\n{\n  \"post\": the post,\n  \"title\": the title\n}",
+        "options": {
+          "systemMessage": "You are an expert youtube short and post creator."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1264,
+        256
+      ],
+      "id": "4a34e66b-91c8-4246-b87a-af64261a436c",
+      "name": "YouTube Short Agent"
+    },
+    {
+      "parameters": {
+        "platform": "youtube",
+        "accountId": {
+          "__rl": true,
+          "value": "10255",
+          "mode": "list",
+          "cachedResultName": "Tyler Programming (Tyler AI)",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/10255"
+        },
+        "postContentText": "={{ $json.output.parseJson().post }}",
+        "postContentMediaUrls": "={{ $('Get Latest Youtube Short Record').item.json['Blotato Media URL'] }}",
+        "postCreateYoutubeOptionTitle": "={{ $json.output.parseJson().title }}",
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [
+        1616,
+        256
+      ],
+      "id": "446c8774-b045-424a-bfac-b198443d48c2",
+      "name": "Create post",
+      "credentials": {
+        "blotatoApi": {
+          "id": "3CI22h5nnw84VtGe",
+          "name": "Blotato account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "Platforms",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        576,
+        464
+      ],
+      "id": "5414df9b-e390-47d0-8b5f-4d55f3a49f4d",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6809b651-b4a9-40ea-a30c-657b50d7c684",
+              "name": "=",
+              "value": "={{ $json.Platforms.filter(item => !$json..includes(item)) }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        384,
+        544
+      ],
+      "id": "b658bb8f-92a7-45b8-ba07-5150fcb1fcab",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b568d6ec-2789-46da-927c-49dbef56327f",
+              "leftValue": "={{ $('Search records').item.json['Social Account'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        192,
+        480
+      ],
+      "id": "9532bff4-efa1-462e-b5a1-6758a279afb8",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldoWBOJuGKGMOWF",
+          "mode": "list",
+          "cachedResultName": "video-platforms",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tbldoWBOJuGKGMOWF"
+        },
+        "filterByFormula": "({Type} = 'short-form videos')",
+        "returnAll": false,
+        "limit": 1,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        16,
+        480
+      ],
+      "id": "ce0f55ba-1739-42b6-a365-2c6c136a09a0",
+      "name": "Get Platforms",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsWPXiVDpPVPxrK",
+          "mode": "list",
+          "cachedResultName": "video-uploads",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblsWPXiVDpPVPxrK"
+        },
+        "filterByFormula": "COUNTA({Social Account}) < 4",
+        "returnAll": false,
+        "limit": 1,
+        "options": {},
+        "sort": {
+          "property": [
+            {
+              "field": "Upload ID",
+              "direction": "desc"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -128,
+        480
+      ],
+      "id": "e0fccee1-37b9-42c9-9f13-46f2b0fc0630",
+      "name": "Search records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        480
+      ],
+      "id": "374652d6-4dcf-4b60-b588-265e0f46e804",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblMmgJ4Xc3j26uxP",
+          "mode": "list",
+          "cachedResultName": "video-publications",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblMmgJ4Xc3j26uxP"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Post Submission ID": "={{ $json.postSubmissionId }}",
+            "Post Text": "={{ $('Instagram Agent').first().json.output.parseJson().post }}",
+            "Publication Status": "Success",
+            "Scheduled Date": "2025-08-26T22:26:28",
+            "Platform": "instagram",
+            "Video Upload Record": "={{ $('Search records').item.json['Upload ID'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Id",
+              "displayName": "Id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Post Submission ID",
+              "displayName": "Post Submission ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Post Text",
+              "displayName": "Post Text",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Publication Status",
+              "displayName": "Publication Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Success",
+                  "value": "Success"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                },
+                {
+                  "name": "Pending",
+                  "value": "Pending"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Published At",
+              "displayName": "Published At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Scheduled Date",
+              "displayName": "Scheduled Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Video Upload Record",
+              "displayName": "Video Upload Record",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1872,
+        432
+      ],
+      "id": "b52bc4de-5db6-4066-a6ad-2b1bc0d62197",
+      "name": "Create Instagram Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblMmgJ4Xc3j26uxP",
+          "mode": "list",
+          "cachedResultName": "video-publications",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblMmgJ4Xc3j26uxP"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Post Submission ID": "={{ $json.postSubmissionId }}",
+            "Post Text": "={{ $('YouTube Short Agent').first().json.output.parseJson().post }}",
+            "Publication Status": "Success",
+            "Scheduled Date": "2025-08-26T22:26:28",
+            "Platform": "youtube",
+            "Video Upload Record": "={{ $('Search records').item.json['Upload ID'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Id",
+              "displayName": "Id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Post Submission ID",
+              "displayName": "Post Submission ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Post Text",
+              "displayName": "Post Text",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Publication Status",
+              "displayName": "Publication Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Success",
+                  "value": "Success"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                },
+                {
+                  "name": "Pending",
+                  "value": "Pending"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Published At",
+              "displayName": "Published At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Scheduled Date",
+              "displayName": "Scheduled Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Video Upload Record",
+              "displayName": "Video Upload Record",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1872,
+        256
+      ],
+      "id": "cf6129fe-e2bf-4b75-891b-958055580016",
+      "name": "Create Youtube Short Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblMmgJ4Xc3j26uxP",
+          "mode": "list",
+          "cachedResultName": "video-publications",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblMmgJ4Xc3j26uxP"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Post Submission ID": "={{ $json.postSubmissionId }}",
+            "Post Text": "={{ $('LinkedIn Agent').first().json.output.parseJson().post }}",
+            "Publication Status": "Success",
+            "Scheduled Date": "2025-08-26T22:26:28",
+            "Platform": "linkedin",
+            "Video Upload Record": "={{ $('Search records').item.json['Upload ID'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Id",
+              "displayName": "Id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Platform",
+              "displayName": "Platform",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Post Submission ID",
+              "displayName": "Post Submission ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Post Text",
+              "displayName": "Post Text",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Publication Status",
+              "displayName": "Publication Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Success",
+                  "value": "Success"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                },
+                {
+                  "name": "Pending",
+                  "value": "Pending"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Published At",
+              "displayName": "Published At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Scheduled Date",
+              "displayName": "Scheduled Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Video Upload Record",
+              "displayName": "Video Upload Record",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1872,
+        80
+      ],
+      "id": "0830c760-f0cf-48d7-8b89-08bb70342f2d",
+      "name": "Create LinkedIn Record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-pro",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-pro"
+        },
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        128,
+        160
+      ],
+      "id": "1589f0c0-9b65-480d-b746-c4705d634f26",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ANrLidMw06q76TXX",
+          "name": "Gemini"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsWPXiVDpPVPxrK",
+          "mode": "list",
+          "cachedResultName": "video-uploads",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblsWPXiVDpPVPxrK"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Transcription Status": "Failed",
+            "Transcription": "={{ $json.text }}",
+            "Upload ID": "={{ $('Create Blotato Success Record').item.json.fields['Upload ID'] }}",
+            "Upload Status": "Success"
+          },
+          "matchingColumns": [
+            "Upload ID"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Upload ID",
+              "displayName": "Upload ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Google Drive URL",
+              "displayName": "Google Drive URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Google Drive File ID",
+              "displayName": "Google Drive File ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Converted URL",
+              "displayName": "Converted URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Blotato Media URL",
+              "displayName": "Blotato Media URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Upload Status",
+              "displayName": "Upload Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Success",
+                  "value": "Success"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                },
+                {
+                  "name": "Processing",
+                  "value": "Processing"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Upload Time",
+              "displayName": "Upload Time",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Social Account",
+              "displayName": "Social Account",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "video-publications",
+              "displayName": "video-publications",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcription",
+              "displayName": "Transcription",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcription Status",
+              "displayName": "Transcription Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Processing",
+                  "value": "Processing"
+                },
+                {
+                  "name": "Complete",
+                  "value": "Complete"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        368,
+        224
+      ],
+      "id": "e607bd2f-f1e0-4638-848a-6eadf6d50693",
+      "name": "Update Media Record (Failure)",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appRcimSdzB4syDWp",
+          "mode": "list",
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblsWPXiVDpPVPxrK",
+          "mode": "list",
+          "cachedResultName": "video-uploads",
+          "cachedResultUrl": "https://airtable.com/appRcimSdzB4syDWp/tblsWPXiVDpPVPxrK"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Transcription Status": "Complete",
+            "Transcription": "={{ $json.content.parts[0].text }}",
+            "Upload ID": "={{ $('Create Blotato Success Record').item.json.fields['Upload ID'] }}",
+            "Upload Status": "Success"
+          },
+          "matchingColumns": [
+            "Upload ID"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Upload ID",
+              "displayName": "Upload ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Google Drive URL",
+              "displayName": "Google Drive URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Google Drive File ID",
+              "displayName": "Google Drive File ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Converted URL",
+              "displayName": "Converted URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Blotato Media URL",
+              "displayName": "Blotato Media URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Upload Status",
+              "displayName": "Upload Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Success",
+                  "value": "Success"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                },
+                {
+                  "name": "Processing",
+                  "value": "Processing"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Upload Time",
+              "displayName": "Upload Time",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Social Account",
+              "displayName": "Social Account",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Created At",
+              "displayName": "Created At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "video-publications",
+              "displayName": "video-publications",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcription",
+              "displayName": "Transcription",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcription Status",
+              "displayName": "Transcription Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Processing",
+                  "value": "Processing"
+                },
+                {
+                  "name": "Complete",
+                  "value": "Complete"
+                },
+                {
+                  "name": "Failed",
+                  "value": "Failed"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        368,
+        64
+      ],
+      "id": "f74a31c0-351c-4c31-a777-52b8e47e88f4",
+      "name": "Update Media Record (Success)",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "on upload media, return url must 2xx, otherwise create failure record\n"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        -112
+      ],
+      "id": "293e837d-b3a0-42fa-8c68-1375e78fe4d7",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n-workflows",
+  "repo_owner": "tylerprogramming",
+  "repo_path": "https://github.com/tylerprogramming/n8n-workflows",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-24T20:08:37.182Z",
+      "updatedAt": "2025-08-24T20:08:37.182Z",
+      "role": "workflow:owner",
+      "workflowId": "w9dLn3XrFCpxB4hp",
+      "projectId": "x0No9CeX7Uf2gClq"
+    }
+  ],
+  "staticData": null,
+  "sub_path": "social_media",
+  "tags": [
+    {
+      "createdAt": "2025-09-27T18:49:27.791Z",
+      "updatedAt": "2025-09-27T18:49:27.791Z",
+      "id": "0O9KHo1zaLAlATs6",
+      "name": "social_media"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-27T18:49:29.000Z",
+  "versionId": "5676f0cd-92c4-4dc8-b4b4-38d9e7552a6f"
+}
