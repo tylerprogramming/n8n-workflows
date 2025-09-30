@@ -1,0 +1,231 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Telegram Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Telegram Fields": {
+      "main": [
+        [
+          {
+            "node": "Get Telegram Photo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Telegram Photo": {
+      "main": [
+        [
+          {
+            "node": "Downloading the File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Downloading the File": {
+      "main": [
+        [
+          {
+            "node": "Update Name to PNG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Name to PNG": {
+      "main": [
+        [
+          {
+            "node": "Edit an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-30T01:44:12.957Z",
+  "id": "OC97n5EixJAXJOfS",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Nano banana Native Editing",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -176
+      ],
+      "id": "2fa787c3-9d02-4ed5-b7b6-f9787d1d4814",
+      "name": "Telegram Trigger",
+      "webhookId": "7c57f332-89ac-4574-b7ff-5b5f1ec614f9",
+      "credentials": {
+        "telegramApi": {
+          "id": "4ml5GHmSBn0oCcI2",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "afd398b5-4489-494b-b120-76dc0bf9489e",
+              "name": "photo",
+              "value": "={{ $json.message.photo?.[3]?.file_id\n   ?? $json.message.photo?.[2]?.file_id\n   ?? $json.message.photo?.[1]?.file_id\n   ?? $json.message.photo?.[0]?.file_id }}\n",
+              "type": "string"
+            },
+            {
+              "id": "72d4cc66-ea30-4986-b93a-6a28cc5a5c72",
+              "name": "text",
+              "value": "={{ $json.message.caption || $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "5a97b575-98be-402a-9a29-9cea256b4fa2",
+              "name": "access_token",
+              "value": "=7861486905:AAEiKgs9yVnonFInKwlKoHCVdgW1lkbycSU",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        192,
+        -176
+      ],
+      "id": "facf465d-b5ef-438b-a921-9eb0fb5ea50e",
+      "name": "Get Telegram Fields"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "edit",
+        "prompt": "={{ $('Get Telegram Fields').item.json.text }}",
+        "images": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {
+          "binaryPropertyOutput": "edited"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1008,
+        -176
+      ],
+      "id": "d51bf151-46f6-4259-9ac0-a6ba723a3204",
+      "name": "Edit an image",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ANrLidMw06q76TXX",
+          "name": "Gemini"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $json.access_token }}/getFile?file_id={{ $json.photo }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        384,
+        -176
+      ],
+      "id": "84c97034-24af-4b28-98ba-52ebca4ada27",
+      "name": "Get Telegram Photo"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.telegram.org/file/bot{{ $('Get Telegram Fields').item.json.access_token }}/{{ $json.result.file_path }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        592,
+        -176
+      ],
+      "id": "67240656-703a-4a22-b104-12f1625b9f1e",
+      "name": "Downloading the File"
+    },
+    {
+      "parameters": {
+        "operation": "blur",
+        "blur": 0,
+        "sigma": 0,
+        "options": {
+          "fileName": "test.png"
+        }
+      },
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        800,
+        -176
+      ],
+      "id": "a809be63-5aa0-4ff5-9077-6838bc67291a",
+      "name": "Update Name to PNG"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n-workflows",
+  "repo_owner": "tylerprogramming",
+  "repo_path": "https://github.com/tylerprogramming/n8n-workflows",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-30T01:44:12.960Z",
+      "updatedAt": "2025-09-30T01:44:12.960Z",
+      "role": "workflow:owner",
+      "workflowId": "OC97n5EixJAXJOfS",
+      "projectId": "x0No9CeX7Uf2gClq"
+    }
+  ],
+  "staticData": null,
+  "sub_path": "content",
+  "tags": [
+    {
+      "createdAt": "2025-09-07T04:22:44.982Z",
+      "updatedAt": "2025-09-07T04:22:44.982Z",
+      "id": "93xoGltPT6COu6ov",
+      "name": "content"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-30T02:38:13.000Z",
+  "versionId": "2b68535d-666d-4a27-a3c6-7a5c4052ceef"
+}
