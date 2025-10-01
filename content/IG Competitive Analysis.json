@@ -6,17 +6,6 @@
         []
       ]
     },
-    "Upload file": {
-      "main": [
-        [
-          {
-            "node": "Append or update row in sheet",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Set Usernames": {
       "main": [
         [
@@ -449,6 +438,17 @@
           }
         ]
       ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Create or update a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-07T04:22:46.228Z",
@@ -556,7 +556,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1008,
+        1616,
         -336
       ],
       "id": "7348a0fe-9896-42e6-b05e-3adac9db32a7",
@@ -565,38 +565,6 @@
         "googleSheetsOAuth2Api": {
           "id": "sPId9ynzVndHtAYA",
           "name": "Google Sheets account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "name": "={{ $json.username }}_pfp",
-        "driveId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "value": "1Dj1pkDMD4lnUDhSVG1vt_K-BpaJOPgIv",
-          "mode": "list",
-          "cachedResultName": "Content Generation",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/1Dj1pkDMD4lnUDhSVG1vt_K-BpaJOPgIv"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        816,
-        -336
-      ],
-      "id": "ec757b30-ca87-4b3d-a2c1-04da9febb5c6",
-      "name": "Upload file",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "EaQRNin7iryown3y",
-          "name": "Google Drive account"
         }
       }
     },
@@ -758,6 +726,7 @@
           "cachedResultUrl": "https://console.apify.com/actors/shu8hvrXbJbY3Eb9W/input"
         },
         "customBody": "={\n    \"addParentData\": false,\n    \"directUrls\": \n        {{ $json.directUrls.toJsonString() }}\n    ,\n    \"enhanceUserSearchWithFacebookPage\": false,\n    \"isUserReelFeedURL\": false,\n    \"isUserTaggedFeedURL\": false,\n    \"onlyPostsNewerThan\": \"{{ $('Set String for IG Scraper Days Ago').first().json.days_back }}\",\n    \"resultsLimit\": {{ $('Get IG Scraper Settings').first().json.limit_for_each }},\n    \"resultsType\": \"posts\",\n    \"searchLimit\": 1,\n    \"searchType\": \"hashtag\"\n} ",
+        "timeout": {},
         "authentication": "apifyOAuth2Api"
       },
       "type": "@apify/n8n-nodes-apify.apify",
@@ -1919,6 +1888,203 @@
       ],
       "id": "d01dbe28-c232-4536-b880-8dca73cc8c54",
       "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbljjTiZ54aDAR9bs",
+          "mode": "list",
+          "cachedResultName": "Instagram Business Profiles",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbljjTiZ54aDAR9bs"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Followers": "={{ $('Retrieve PFP').item.json.followersCount }}",
+            "Username": "={{ $('Retrieve PFP').item.json.username }}",
+            "Bio": "={{ $('Retrieve PFP').item.json.biography }}",
+            "Posts": "={{ $('Retrieve PFP').item.json.postsCount }}",
+            "Following": "={{ $('Retrieve PFP').item.json.followsCount }}",
+            "Profile Created At": "={{ $now.format('yyyy-MM-dd') }}",
+            "Profile Last Updated": "={{ $now.format('yyyy-MM-dd') }}",
+            "PFP": "=    [\n      {\n        \"url\": \"{{ $json.webContentLink }}\",\n        \"filename\": \"{{ $json.name }}\"\n      }\n    ]"
+          },
+          "matchingColumns": [
+            "Username"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Username",
+              "displayName": "Username",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PFP",
+              "displayName": "PFP",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Bio",
+              "displayName": "Bio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Followers",
+              "displayName": "Followers",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Posts",
+              "displayName": "Posts",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Following",
+              "displayName": "Following",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Platform Profile",
+              "displayName": "Platform Profile",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Profile Created At",
+              "displayName": "Profile Created At",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profile Last Updated",
+              "displayName": "Profile Last Updated",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "typecast": true
+        }
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        992,
+        -336
+      ],
+      "id": "3da04ebd-f910-47c0-9a0f-bd2b51ae4a71",
+      "name": "Create or update a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.username }}_pfp",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1h0xrK0XxwuAQ6I37OL-2PH7PQTqsRkP3",
+          "mode": "list",
+          "cachedResultName": "IG Scraper",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1h0xrK0XxwuAQ6I37OL-2PH7PQTqsRkP3"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        800,
+        -336
+      ],
+      "id": "ec757b30-ca87-4b3d-a2c1-04da9febb5c6",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "EaQRNin7iryown3y",
+          "name": "Google Drive account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1948,6 +2114,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-14T19:46:14.000Z",
-  "versionId": "d4618e40-3d62-4a7b-b056-332994f7d5d4"
+  "updatedAt": "2025-10-01T01:31:23.000Z",
+  "versionId": "03e222da-8a0a-4a66-9d23-01f875e9c3e5"
 }
