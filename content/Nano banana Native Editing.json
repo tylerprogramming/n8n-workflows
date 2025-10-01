@@ -75,7 +75,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
       "position": [
-        0,
+        -16,
         -176
       ],
       "id": "2fa787c3-9d02-4ed5-b7b6-f9787d1d4814",
@@ -107,7 +107,7 @@
             {
               "id": "5a97b575-98be-402a-9a29-9cea256b4fa2",
               "name": "access_token",
-              "value": "=7861486905:AAEiKgs9yVnonFInKwlKoHCVdgW1lkbycSU",
+              "value": "=token_here",
               "type": "string"
             }
           ]
@@ -226,6 +226,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-30T02:38:13.000Z",
-  "versionId": "2b68535d-666d-4a27-a3c6-7a5c4052ceef"
+  "updatedAt": "2025-09-30T12:01:35.000Z",
+  "versionId": "bc544408-8c27-430b-9cb3-12fe7d83abf7"
 }
