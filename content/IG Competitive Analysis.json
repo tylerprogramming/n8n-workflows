@@ -52,24 +52,12 @@
     },
     "Schedule Trigger": {
       "main": [
-        [
-          {
-            "node": "Get IG Scraper Settings",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Get Profiles": {
       "main": [
-        [
-          {
-            "node": "Prepare Direct Urls",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Prepare Direct Urls": {
@@ -109,7 +97,7 @@
       "main": [
         [
           {
-            "node": "Get Profiles",
+            "node": "Get IG Profiles",
             "type": "main",
             "index": 0
           }
@@ -140,20 +128,14 @@
     },
     "Get row(s) in sheet": {
       "main": [
-        [
-          {
-            "node": "Map Necessary Fields for Analysis",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Analysis Settings": {
       "main": [
         [
           {
-            "node": "Get row(s) in sheet",
+            "node": "Search records",
             "type": "main",
             "index": 0
           }
@@ -204,17 +186,6 @@
         ]
       ]
     },
-    "Get IG Scraper Settings": {
-      "main": [
-        [
-          {
-            "node": "Set Number of Days Ago To Start Scraping",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If a Video Url Exists and is not Null": {
       "main": [
         [
@@ -231,17 +202,6 @@
         [
           {
             "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Add Scraped Data to Output Sheet": {
-      "main": [
-        [
-          {
-            "node": "Download Videos",
             "type": "main",
             "index": 0
           }
@@ -274,7 +234,7 @@
       "main": [
         [
           {
-            "node": "Update Rows in Output",
+            "node": "Update record",
             "type": "main",
             "index": 0
           }
@@ -307,7 +267,7 @@
       "main": [
         [
           {
-            "node": "Add Scraped Data to Output Sheet",
+            "node": "Create/Update Scraped Video",
             "type": "main",
             "index": 0
           }
@@ -316,13 +276,7 @@
     },
     "Update Rows in Output": {
       "main": [
-        [
-          {
-            "node": "Analysis Settings",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "OpenAI Chat Model1": {
@@ -444,6 +398,66 @@
         [
           {
             "node": "Create or update a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get IG Profiles": {
+      "main": [
+        [
+          {
+            "node": "Prepare Direct Urls",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get IG Scraper Settings - old": {
+      "main": [
+        []
+      ]
+    },
+    "Get IG Scraper Settings": {
+      "main": [
+        [
+          {
+            "node": "Set Number of Days Ago To Start Scraping",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create/Update Scraped Video": {
+      "main": [
+        [
+          {
+            "node": "Download Videos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update record": {
+      "main": [
+        [
+          {
+            "node": "Analysis Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "Map Necessary Fields for Analysis",
             "type": "main",
             "index": 0
           }
@@ -690,8 +704,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        432,
-        -32
+        464,
+        -208
       ],
       "id": "a19b5caf-75b1-48e2-8171-2b89fb319207",
       "name": "Get Profiles",
@@ -709,7 +723,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        656,
+        576,
         -32
       ],
       "id": "bb57ec42-2c37-4566-90e7-c33400374a44",
@@ -762,7 +776,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -16,
+        -32,
         -32
       ],
       "id": "61d27992-9be0-4573-96e1-c70e323230e5",
@@ -785,7 +799,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        208,
+        176,
         -32
       ],
       "id": "2246a898-961a-4b59-9461-5faa4aff700f",
@@ -853,8 +867,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -240,
-        576
+        -48,
+        912
       ],
       "id": "792e3083-c0a6-4819-acf8-a56264ff01f0",
       "name": "Get row(s) in sheet",
@@ -873,7 +887,7 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        384,
+        592,
         576
       ],
       "id": "1a590c15-75cd-4e9a-ade9-dbcfd2f7ac51",
@@ -900,7 +914,8 @@
         576
       ],
       "id": "e76479d5-27f3-4670-bda0-3a8e37df1fa7",
-      "name": "Analysis Settings"
+      "name": "Analysis Settings",
+      "executeOnce": true
     },
     {
       "parameters": {
@@ -983,25 +998,25 @@
             {
               "id": "74ce2b8c-18a1-48cb-818c-fcca8ffe5f1a",
               "name": "Caption",
-              "value": "={{ $('Get row(s) in sheet').item.json.Caption }}",
+              "value": "={{ $json.Caption }}",
               "type": "string"
             },
             {
               "id": "c262ce12-5e1d-4d68-95ba-fb90fcbe7b5f",
               "name": "Transcript",
-              "value": "={{ $('Get row(s) in sheet').item.json.Transcript }}",
+              "value": "={{ $json.Transcript }}",
               "type": "string"
             },
             {
               "id": "56a01bb8-49c8-4ca6-81cd-db4e7574694c",
               "name": "Hook Analysis",
-              "value": "={{ $('Get row(s) in sheet').item.json['Hook Analysis'] }}",
+              "value": "={{ $json['Hook Analysis'] }}",
               "type": "string"
             },
             {
               "id": "35658632-393c-4082-8d01-28f08f6931e9",
               "name": "Views",
-              "value": "={{ $('Get row(s) in sheet').item.json.Views }}",
+              "value": "={{ $json.Views }}",
               "type": "number"
             },
             {
@@ -1025,7 +1040,7 @@
             {
               "id": "3ee16fd4-e444-48b9-8374-bda8b3acb320",
               "name": "Thumbnail",
-              "value": "={{ $json.Thumbnail.replaceAll('=IMAGE(\"', '').replaceAll('\", 4, 300, 200)', '') }}",
+              "value": "={{ $json.Thumbnail[0].url }}",
               "type": "string"
             },
             {
@@ -1041,7 +1056,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -32,
+        48,
         576
       ],
       "id": "fc845e41-996b-41e1-9f36-cc9c47e69bfe",
@@ -1062,45 +1077,11 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        176,
+        384,
         576
       ],
       "id": "a2fa3075-6982-4d75-90bc-801940a2a4b3",
       "name": "Sort by Views Descending for Analysis"
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U",
-          "mode": "list",
-          "cachedResultName": "IG Scraper Analysis",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 620704002,
-          "mode": "list",
-          "cachedResultName": "settings",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U/edit#gid=620704002"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        -240,
-        -32
-      ],
-      "id": "ca24df93-41c2-406e-b76b-c6440fbc4aa5",
-      "name": "Get IG Scraper Settings",
-      "executeOnce": true,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "sPId9ynzVndHtAYA",
-          "name": "Google Sheets account 2"
-        }
-      }
     },
     {
       "parameters": {
@@ -1143,7 +1124,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1072,
+        1056,
         -32
       ],
       "id": "bf3d9e5f-3c2c-43af-9117-3016b514303c",
@@ -1158,7 +1139,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        464,
+        368,
         272
       ],
       "id": "0b52e189-2d37-4487-97ae-5ecd78387b68",
@@ -1173,181 +1154,13 @@
     },
     {
       "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U",
-          "mode": "list",
-          "cachedResultName": "IG Scraper Analysis",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 580797684,
-          "mode": "list",
-          "cachedResultName": "output",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U/edit#gid=580797684"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "Caption": "={{ $json.caption }}",
-            "Hashtags": "={{ $json.hashtags }}",
-            "Post URL": "={{ $json.url }}",
-            "Comments": "={{ $json.commentsCount }}",
-            "Thumbnail": "==IMAGE(\"{{ $json.displayUrl }}\", 4, 300, 200)",
-            "Likes": "={{ $json.likesCount }}",
-            "Views": "={{ $json.videoViewCount }}",
-            "Owner Fullname": "={{ $json.ownerFullName }}",
-            "Date": "={{ $json.timestamp.toDateTime().format('yyyy-MM-dd') }}",
-            "Duration": "={{ $json.videoDuration }}"
-          },
-          "matchingColumns": [
-            "Post URL"
-          ],
-          "schema": [
-            {
-              "id": "Thumbnail",
-              "displayName": "Thumbnail",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Post URL",
-              "displayName": "Post URL",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Owner Fullname",
-              "displayName": "Owner Fullname",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Caption",
-              "displayName": "Caption",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Transcript",
-              "displayName": "Transcript",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Hook Analysis",
-              "displayName": "Hook Analysis",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Views",
-              "displayName": "Views",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Likes",
-              "displayName": "Likes",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Comments",
-              "displayName": "Comments",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Hashtags",
-              "displayName": "Hashtags",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Date",
-              "displayName": "Date",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Duration",
-              "displayName": "Duration",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {
-          "cellFormat": "USER_ENTERED"
-        }
-      },
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.7,
-      "position": [
-        -16,
-        272
-      ],
-      "id": "8ad6d443-87c5-42f6-a503-5b667f700c57",
-      "name": "Add Scraped Data to Output Sheet",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "sPId9ynzVndHtAYA",
-          "name": "Google Sheets account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
         "url": "={{ $('Limit to Top N').item.json.videoUrl }}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        224,
+        176,
         272
       ],
       "id": "3110d9be-4da1-46d4-832f-fabadf8b551e",
@@ -1365,7 +1178,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        720,
+        624,
         256
       ],
       "id": "a5075ef6-90d1-4429-bf14-50f5bddf184f",
@@ -1390,7 +1203,7 @@
             {
               "id": "f467d10a-80a2-43cd-81de-8a779a1b2daf",
               "name": "post_url",
-              "value": "={{ $('Download Videos').item.json['Post URL'] }}",
+              "value": "={{ $('Limit to Top N').item.json.url }}",
               "type": "string"
             }
           ]
@@ -1400,7 +1213,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1072,
+        928,
         256
       ],
       "id": "eb6b173b-48e2-41ef-8b39-20349eb4ba59",
@@ -1413,7 +1226,7 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        864,
+        848,
         912
       ],
       "id": "2a297dad-9ea0-4bb0-b324-8de2c1fe0bf2",
@@ -1608,8 +1421,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1344,
-        320
+        1664,
+        192
       ],
       "id": "24fabd6a-589c-4eab-8b66-f03c13a30e50",
       "name": "Update Rows in Output",
@@ -1635,7 +1448,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        720,
+        704,
         912
       ],
       "id": "d490f2f4-d40a-4748-b889-63a3bed7d2cd",
@@ -1658,7 +1471,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        848,
+        1056,
         576
       ],
       "id": "a68f7421-58d9-4af2-a8ff-338bee66d458",
@@ -1666,7 +1479,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Function node: parse Agent-3 result and render HTML/text report (styled)\n// Accepts payload shaped like the sample provided in the last message:\n// {\n//   output: \"{\\\"reels\\\": [...], \\\"patterns\\\": {...}, \\\"hooks_ideas\\\": [...]}\"\n// }\n\n//----------------------------------------------------\n// Helpers\n//----------------------------------------------------\nfunction tryParseJsonLoose(v) {\n  if (v == null) return null;\n  if (typeof v === \"object\") return v;\n  if (typeof v !== \"string\") return null;\n  let t = v.trim();\n  t = t.replace(/^```(?:json)?\\s*/i, \"\").replace(/```$/i, \"\").trim(); // strip code fences if present\n  try { return JSON.parse(t); } catch {\n    // try substring between first { and last }\n    const s = t.indexOf(\"{\"), e = t.lastIndexOf(\"}\");\n    if (s >= 0 && e > s) {\n      try { return JSON.parse(t.slice(s, e + 1)); } catch {}\n    }\n    return null;\n  }\n}\n\nfunction escHtml(s) {\n  return String(s ?? \"\")\n    .replace(/&/g, \"&amp;\")\n    .replace(/</g, \"&lt;\")\n    .replace(/>/g, \"&gt;\");\n}\n\nfunction utcStamp() {\n  const d = new Date();\n  const yyyy = d.getUTCFullYear();\n  const mm = String(d.getUTCMonth() + 1).padStart(2, \"0\");\n  const dd = String(d.getUTCDate()).padStart(2, \"0\");\n  const hh = String(d.getUTCHours()).padStart(2, \"0\");\n  const mi = String(d.getUTCMinutes()).padStart(2, \"0\");\n  return `${yyyy}-${mm}-${dd} ${hh}:${mi} UTC`;\n}\n\nfunction splitCsvList(s) {\n  if (!s) return [];\n  return s.split(\",\").map(x => x.trim()).filter(Boolean);\n}\n\nfunction parseMetrics(tierLine = \"\") {\n  const views = (tierLine.match(/([\\d,]+)\\s*views/i) || [])[1] || \"\";\n  const likes = (tierLine.match(/([\\d,]+)\\s*likes/i) || [])[1] || \"\";\n  const comments = (tierLine.match(/([\\d,]+)\\s*comments/i) || [])[1] || \"\";\n  const engagement = (tierLine.match(/([\\d.]+)\\s*%\\s*engagement/i) || [])[1] || \"\";\n  return { views, likes, comments, engagement };\n}\n\n//----------------------------------------------------\n// 1) Read & parse Agent-3 payload from incoming items\n//----------------------------------------------------\nconst items = $input.all();\nlet agent = null;\n\nfor (const it of items) {\n  const j = it.json || {};\n  if (j.output != null) {\n    agent = tryParseJsonLoose(j.output);\n    if (agent) break;\n  }\n  if (!agent) {\n    const cand = tryParseJsonLoose(j);\n    if (cand && (cand.reels || cand.patterns || cand.hooks_ideas)) {\n      agent = cand;\n      break;\n    }\n  }\n}\n\nif (!agent) {\n  const subject = `Instagram Content Analysis — ${utcStamp()}`;\n  return [{ json: { subject, html: \"<div>No data</div>\", text: \"No data\" } }];\n}\n\n//----------------------------------------------------\n// 2) Normalize inputs\n//----------------------------------------------------\nconst reels = Array.isArray(agent.reels) ? agent.reels : [];\nconst patterns = agent.patterns || {};\nconst hooksIdeas = Array.isArray(agent.hooks_ideas) ? agent.hooks_ideas : [];\n\nconst topicsArr  = splitCsvList(patterns.topics_csv || \"\");\nconst hooksArr   = splitCsvList(patterns.hooks_csv  || \"\");\nconst trendsArr  = splitCsvList(patterns.trends_csv || \"\");\nconst playbook   = Array.isArray(patterns.playbook_bullets) ? patterns.playbook_bullets : [];\n\nconst timestamp = utcStamp();\n\n//----------------------------------------------------\n// 3) Build HTML (email-safe inline styles)\n//----------------------------------------------------\nlet html = `<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"x-apple-disable-message-reformatting\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Instagram Content Analysis — ${escHtml(timestamp)}</title>\n  </head>\n  <body style=\"margin:0; padding:0; background:#f6f7fb; color:#111111;\">\n    <div style=\"max-width:720px; margin:0 auto; padding:24px; font-family:Inter, Arial, sans-serif;\">\n      <!-- Header -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h2 style=\"margin:0; font-size:20px; line-height:1.3; font-weight:700; color:#0b74de;\">\n          Instagram Content Analysis — ${escHtml(timestamp)}\n        </h2>\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Top Competitor Reels -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h3 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#111;\">Top Competitor Reels</h3>\n`;\n\nfor (const r of reels) {\n  const title = escHtml(r.title_line || \"\");\n  const why   = escHtml(r.why_line || \"\");\n  const post  = escHtml(r.post_url || \"\");\n  const thumb = escHtml(r.thumbnail_url || \"\");\n  const { views, likes, comments, engagement } = parseMetrics(r.tier_line || \"\");\n\n  html += `\n        <div style=\"border-left:4px solid #f59e0b; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:14px; margin:12px 0;\">\n          <div style=\"display:flex; align-items:flex-start;\">\n            ${thumb ? `\n            <a href=\"${post}\" aria-label=\"Open reel\" style=\"display:block; width:120px; height:120px; border-radius:10px; overflow:hidden; border:1px solid #fde68a; margin-right:12px; background:#fff3cd;\">\n              <img src=\"${thumb}\" width=\"120\" height=\"120\" alt=\"Reel thumbnail\" style=\"display:block; width:120px; height:120px; object-fit:cover;\">\n            </a>` : ``}\n\n            <div style=\"flex:1;\">\n              <div style=\"font-weight:700; color:#92400e; font-size:14px; line-height:1.4;\">${title}</div>\n\n              <div style=\"margin-top:8px;\">\n                ${views ? `<span style=\"display:inline-block; font-size:12px; color:#b91c1c; background:#fee2e2; border:1px solid #fecaca; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(views)} views</span>` : ``}\n                ${likes ? `<span style=\"display:inline-block; font-size:12px; color:#0b74de; background:#eaf3ff; border:1px solid #d6e7ff; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(likes)} likes</span>` : ``}\n                ${comments ? `<span style=\"display:inline-block; font-size:12px; color:#7c3aed; background:#f5edff; border:1px solid #e6d9ff; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(comments)} comments</span>` : ``}\n                ${engagement ? `<span style=\"display:inline-block; font-size:12px; color:#065f46; background:#eafff4; border:1px solid #c7f7e2; padding:2px 8px; border-radius:999px;\">Engagement • ${escHtml(engagement)}%</span>` : ``}\n              </div>\n\n              ${why ? `\n              <div style=\"margin-top:10px; font-size:13px; color:#374151; line-height:1.5;\">\n                <span style=\"font-weight:700; color:#111;\">Why it worked:</span>\n                ${why}\n              </div>` : ``}\n            </div>\n          </div>\n        </div>`;\n}\n\nhtml += `\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Winning Patterns (color chips + checklist) -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h3 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#111;\">Winning Patterns</h3>\n\n        <!-- Topics -->\n        <div style=\"margin:10px 0;\">\n          <div style=\"font-weight:700; font-size:14px; color:#92400e; margin-bottom:6px;\">Topics</div>\n          <div>\n            ${topicsArr.map(t =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#fffbeb; border:1px solid #fde68a; color:#92400e;\">${escHtml(t)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Hooks -->\n        <div style=\"margin:14px 0 10px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#0b74de; margin-bottom:6px;\">Hooks</div>\n          <div>\n            ${hooksArr.map(h =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#eaf3ff; border:1px solid #d6e7ff; color:#0b74de;\">${escHtml(h)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Trends -->\n        <div style=\"margin:14px 0 10px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#7c3aed; margin-bottom:6px;\">Trends</div>\n          <div>\n            ${trendsArr.map(tr =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#f5edff; border:1px solid #e6d9ff; color:#7c3aed;\">${escHtml(tr)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Playbook -->\n        ${playbook.length ? `\n        <div style=\"margin:16px 0 6px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#065f46; margin-bottom:6px;\">Playbook</div>\n          <ul style=\"list-style:none; margin:0; padding:0;\">\n            ${playbook.map(b =>\n              `<li style=\"margin:6px 0; font-size:13px; line-height:1.45;\">\n                 <span style=\"display:inline-block; font-size:11px; color:#065f46; background:#eafff4; border:1px solid #c7f7e2; padding:2px 8px; border-radius:999px; margin-right:8px;\">✔</span>\n                 <span style=\"color:#1f2937;\">${escHtml(b)}</span>\n               </li>`\n            ).join(\"\")}\n          </ul>\n        </div>` : ``}\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Data-Driven Hook Ideas -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:22px;\">\n        <h3 style=\"margin:0 0 10px; font-size:18px; font-weight:800; color:#111;\">Data-Driven Hook Ideas</h3>\n        <ol style=\"margin:8px 0 0 18px; padding:0; font-size:15px; line-height:1.6;\">\n          ${hooksIdeas.map(h => `<li style=\"margin:6px 0;\">${escHtml(h)}</li>`).join(\"\")}\n        </ol>\n      </div>\n\n      <!-- Footer -->\n      <div style=\"text-align:center; color:#6b7280; font-size:12px; padding:16px 8px;\">\n        Generated by your n8n pipeline.\n      </div>\n    </div>\n  </body>\n</html>`;\n\n//----------------------------------------------------\n// 4) Build plaintext companion\n//----------------------------------------------------\nfunction plainList(title, arr) {\n  if (!arr || !arr.length) return \"\";\n  return `${title}\\n- ${arr.join(\"\\n- \")}\\n`;\n}\n\nconst reelsText = reels.map(r => {\n  const { views, likes, comments, engagement } = parseMetrics(r.tier_line || \"\");\n  const bits = [];\n  bits.push(r.title_line || \"\");\n  const stats = [\n    views ? `${views} views` : null,\n    likes ? `${likes} likes` : null,\n    comments ? `${comments} comments` : null,\n    engagement ? `Engagement ${engagement}%` : null\n  ].filter(Boolean).join(\" • \");\n  if (stats) bits.push(`• ${stats}`);\n  if (r.why_line) bits.push(`• Why it worked: ${r.why_line}`);\n  if (r.post_url) bits.push(`• Source: ${r.post_url}`);\n  return bits.join(\"\\n\");\n}).join(\"\\n\\n\");\n\nconst text =\n`Instagram Content Analysis — ${timestamp}\n\nTop Competitor Reels\n${reelsText}\n\nWinning Patterns\n${plainList(\"Topics\", topicsArr)}\n${plainList(\"Hooks\", hooksArr)}\n${plainList(\"Trends\", trendsArr)}\n${playbook.length ? plainList(\"Playbook\", playbook) : \"\"}\n\nData-Driven Hook Ideas\n${hooksIdeas.map((h,i)=>`${i+1}. ${h}`).join(\"\\n\")}\n`;\n\n//----------------------------------------------------\n// 5) Subject + return\n//----------------------------------------------------\nconst subject = `Instagram Content Analysis`;\n\nreturn [{\n  json: {\n    subject,\n    html,\n    text,\n    // also include the parsed inputs for any downstream debug\n    parsed: { reels, patterns: { topicsArr, hooksArr, trendsArr, playbook }, hooksIdeas }\n  }\n}];\n"
+        "jsCode": "// Function node: parse Agent-3 result and render HTML/text report (styled)\n// Accepts payload shaped like the sample provided in the last message:\n// {\n//   output: \"{\\\"reels\\\": [...], \\\"patterns\\\": {...}, \\\"hooks_ideas\\\": [...]}\"\n// }\n\n//----------------------------------------------------\n// Helpers\n//----------------------------------------------------\nfunction tryParseJsonLoose(v) {\n  if (v == null) return null;\n  if (typeof v === \"object\") return v;\n  if (typeof v !== \"string\") return null;\n  let t = v.trim();\n  t = t.replace(/^```(?:json)?\\s*/i, \"\").replace(/```$/i, \"\").trim(); // strip code fences if present\n  try { return JSON.parse(t); } catch {\n    // try substring between first { and last }\n    const s = t.indexOf(\"{\"), e = t.lastIndexOf(\"}\");\n    if (s >= 0 && e > s) {\n      try { return JSON.parse(t.slice(s, e + 1)); } catch {}\n    }\n    return null;\n  }\n}\n\nfunction escHtml(s) {\n  return String(s ?? \"\")\n    .replace(/&/g, \"&amp;\")\n    .replace(/</g, \"&lt;\")\n    .replace(/>/g, \"&gt;\");\n}\n\nfunction utcStamp() {\n  const d = new Date();\n  const yyyy = d.getUTCFullYear();\n  const mm = String(d.getUTCMonth() + 1).padStart(2, \"0\");\n  const dd = String(d.getUTCDate()).padStart(2, \"0\");\n  const hh = String(d.getUTCHours()).padStart(2, \"0\");\n  const mi = String(d.getUTCMinutes()).padStart(2, \"0\");\n  return `${yyyy}-${mm}-${dd} ${hh}:${mi} UTC`;\n}\n\nfunction splitCsvList(s) {\n  if (!s) return [];\n  return s.split(\",\").map(x => x.trim()).filter(Boolean);\n}\n\nfunction parseMetrics(tierLine = \"\") {\n  const views = (tierLine.match(/([\\d,]+)\\s*views/i) || [])[1] || \"\";\n  const likes = (tierLine.match(/([\\d,]+)\\s*likes/i) || [])[1] || \"\";\n  const comments = (tierLine.match(/([\\d,]+)\\s*comments/i) || [])[1] || \"\";\n  const engagement = (tierLine.match(/([\\d.]+)\\s*%\\s*engagement/i) || [])[1] || \"\";\n  return { views, likes, comments, engagement };\n}\n\n//----------------------------------------------------\n// 1) Read & parse Agent-3 payload from incoming items\n//----------------------------------------------------\nconst items = $input.all();\nlet agent = null;\n\nfor (const it of items) {\n  const j = it.json || {};\n  if (j.output != null) {\n    agent = tryParseJsonLoose(j.output);\n    if (agent) break;\n  }\n  if (!agent) {\n    const cand = tryParseJsonLoose(j);\n    if (cand && (cand.reels || cand.patterns || cand.hooks_ideas)) {\n      agent = cand;\n      break;\n    }\n  }\n}\n\nif (!agent) {\n  const subject = `Instagram Content Analysis — ${utcStamp()}`;\n  return [{ json: { subject, html: \"<div>No data</div>\", text: \"No data\" } }];\n}\n\n//----------------------------------------------------\n// 2) Normalize inputs\n//----------------------------------------------------\nconst reels = Array.isArray(agent.reels) ? agent.reels : [];\nconst patterns = agent.patterns || {};\nconst hooksIdeas = Array.isArray(agent.hooks_ideas) ? agent.hooks_ideas : [];\n\nconst topicsArr  = splitCsvList(patterns.topics_csv || \"\");\nconst hooksArr   = splitCsvList(patterns.hooks_csv  || \"\");\nconst trendsArr  = splitCsvList(patterns.trends_csv || \"\");\nconst playbook   = Array.isArray(patterns.playbook_bullets) ? patterns.playbook_bullets : [];\n\nconst timestamp = utcStamp();\n\n//----------------------------------------------------\n// 3) Build HTML (email-safe inline styles)\n//----------------------------------------------------\nlet html = `<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"x-apple-disable-message-reformatting\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>IG Competitive Analysis</title>\n  </head>\n  <body style=\"margin:0; padding:0; background:#f6f7fb; color:#111111;\">\n    <div style=\"max-width:720px; margin:0 auto; padding:24px; font-family:Inter, Arial, sans-serif;\">\n      <!-- Header -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h2 style=\"margin:0; font-size:20px; line-height:1.3; font-weight:700; color:#0b74de;\">\n          Instagram Content Analysis — ${escHtml(timestamp)}\n        </h2>\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Top Competitor Reels -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h3 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#111;\">Top Competitor Reels</h3>\n`;\n\nfor (const r of reels) {\n  const title = escHtml(r.title_line || \"\");\n  const why   = escHtml(r.why_line || \"\");\n  const post  = escHtml(r.post_url || \"\");\n  const thumb = escHtml(r.thumbnail_url || \"\");\n  const { views, likes, comments, engagement } = parseMetrics(r.tier_line || \"\");\n\n  html += `\n        <div style=\"border-left:4px solid #f59e0b; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:14px; margin:12px 0;\">\n          <div style=\"display:flex; align-items:flex-start;\">\n            ${thumb ? `\n            <a href=\"${post}\" aria-label=\"Open reel\" style=\"display:block; width:120px; height:120px; border-radius:10px; overflow:hidden; border:1px solid #fde68a; margin-right:12px; background:#fff3cd;\">\n              <img src=\"${thumb}\" width=\"120\" height=\"120\" alt=\"Reel thumbnail\" style=\"display:block; width:120px; height:120px; object-fit:cover;\">\n            </a>` : ``}\n\n            <div style=\"flex:1;\">\n              <div style=\"font-weight:700; color:#92400e; font-size:14px; line-height:1.4;\">${title}</div>\n\n              <div style=\"margin-top:8px;\">\n                ${views ? `<span style=\"display:inline-block; font-size:12px; color:#b91c1c; background:#fee2e2; border:1px solid #fecaca; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(views)} views</span>` : ``}\n                ${likes ? `<span style=\"display:inline-block; font-size:12px; color:#0b74de; background:#eaf3ff; border:1px solid #d6e7ff; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(likes)} likes</span>` : ``}\n                ${comments ? `<span style=\"display:inline-block; font-size:12px; color:#7c3aed; background:#f5edff; border:1px solid #e6d9ff; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(comments)} comments</span>` : ``}\n                ${engagement ? `<span style=\"display:inline-block; font-size:12px; color:#065f46; background:#eafff4; border:1px solid #c7f7e2; padding:2px 8px; border-radius:999px;\">Engagement • ${escHtml(engagement)}%</span>` : ``}\n              </div>\n\n              ${why ? `\n              <div style=\"margin-top:10px; font-size:13px; color:#374151; line-height:1.5;\">\n                <span style=\"font-weight:700; color:#111;\">Why it worked:</span>\n                ${why}\n              </div>` : ``}\n            </div>\n          </div>\n        </div>`;\n}\n\nhtml += `\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Winning Patterns (color chips + checklist) -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h3 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#111;\">Winning Patterns</h3>\n\n        <!-- Topics -->\n        <div style=\"margin:10px 0;\">\n          <div style=\"font-weight:700; font-size:14px; color:#92400e; margin-bottom:6px;\">Topics</div>\n          <div>\n            ${topicsArr.map(t =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#fffbeb; border:1px solid #fde68a; color:#92400e;\">${escHtml(t)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Hooks -->\n        <div style=\"margin:14px 0 10px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#0b74de; margin-bottom:6px;\">Hooks</div>\n          <div>\n            ${hooksArr.map(h =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#eaf3ff; border:1px solid #d6e7ff; color:#0b74de;\">${escHtml(h)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Trends -->\n        <div style=\"margin:14px 0 10px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#7c3aed; margin-bottom:6px;\">Trends</div>\n          <div>\n            ${trendsArr.map(tr =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#f5edff; border:1px solid #e6d9ff; color:#7c3aed;\">${escHtml(tr)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Playbook -->\n        ${playbook.length ? `\n        <div style=\"margin:16px 0 6px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#065f46; margin-bottom:6px;\">Playbook</div>\n          <ul style=\"list-style:none; margin:0; padding:0;\">\n            ${playbook.map(b =>\n              `<li style=\"margin:6px 0; font-size:13px; line-height:1.45;\">\n                 <span style=\"display:inline-block; font-size:11px; color:#065f46; background:#eafff4; border:1px solid #c7f7e2; padding:2px 8px; border-radius:999px; margin-right:8px;\">✔</span>\n                 <span style=\"color:#1f2937;\">${escHtml(b)}</span>\n               </li>`\n            ).join(\"\")}\n          </ul>\n        </div>` : ``}\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Data-Driven Hook Ideas -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:22px;\">\n        <h3 style=\"margin:0 0 10px; font-size:18px; font-weight:800; color:#111;\">Data-Driven Hook Ideas</h3>\n        <ol style=\"margin:8px 0 0 18px; padding:0; font-size:15px; line-height:1.6;\">\n          ${hooksIdeas.map(h => `<li style=\"margin:6px 0;\">${escHtml(h)}</li>`).join(\"\")}\n        </ol>\n      </div>\n\n      <!-- Footer -->\n      <div style=\"text-align:center; color:#6b7280; font-size:12px; padding:16px 8px;\">\n        Generated by your n8n pipeline.\n      </div>\n    </div>\n  </body>\n</html>`;\n\n//----------------------------------------------------\n// 4) Build plaintext companion\n//----------------------------------------------------\nfunction plainList(title, arr) {\n  if (!arr || !arr.length) return \"\";\n  return `${title}\\n- ${arr.join(\"\\n- \")}\\n`;\n}\n\nconst reelsText = reels.map(r => {\n  const { views, likes, comments, engagement } = parseMetrics(r.tier_line || \"\");\n  const bits = [];\n  bits.push(r.title_line || \"\");\n  const stats = [\n    views ? `${views} views` : null,\n    likes ? `${likes} likes` : null,\n    comments ? `${comments} comments` : null,\n    engagement ? `Engagement ${engagement}%` : null\n  ].filter(Boolean).join(\" • \");\n  if (stats) bits.push(`• ${stats}`);\n  if (r.why_line) bits.push(`• Why it worked: ${r.why_line}`);\n  if (r.post_url) bits.push(`• Source: ${r.post_url}`);\n  return bits.join(\"\\n\");\n}).join(\"\\n\\n\");\n\nconst text =\n`Instagram Content Analysis — ${timestamp}\n\nTop Competitor Reels\n${reelsText}\n\nWinning Patterns\n${plainList(\"Topics\", topicsArr)}\n${plainList(\"Hooks\", hooksArr)}\n${plainList(\"Trends\", trendsArr)}\n${playbook.length ? plainList(\"Playbook\", playbook) : \"\"}\n\nData-Driven Hook Ideas\n${hooksIdeas.map((h,i)=>`${i+1}. ${h}`).join(\"\\n\")}\n`;\n\n//----------------------------------------------------\n// 5) Subject + return\n//----------------------------------------------------\nconst subject = `Instagram Content Analysis`;\n\nreturn [{\n  json: {\n    subject,\n    html,\n    text,\n    // also include the parsed inputs for any downstream debug\n    parsed: { reels, patterns: { topicsArr, hooksArr, trendsArr, playbook }, hooksIdeas }\n  }\n}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -1688,7 +1501,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        1344,
+        1552,
         576
       ],
       "id": "3feaf706-c77e-47d1-a007-4a4a85c78925",
@@ -1705,7 +1518,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        1648,
+        1856,
         576
       ],
       "id": "d4393f3e-98f3-49ce-9e9f-11c78a9cadcc",
@@ -1718,7 +1531,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        592,
+        800,
         576
       ],
       "id": "95e491ca-e15d-418e-8329-ff8009eb6b3a",
@@ -1731,7 +1544,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1152,
+        1360,
         576
       ],
       "id": "527a1a96-80fe-4f2f-96f0-b08eb92c6750",
@@ -2085,6 +1898,661 @@
           "name": "Google Drive account"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbljjTiZ54aDAR9bs",
+          "mode": "list",
+          "cachedResultName": "Instagram Business Profiles",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbljjTiZ54aDAR9bs"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        384,
+        -32
+      ],
+      "id": "fc5bf34c-e15a-45b5-a819-c3f169c5ee48",
+      "name": "Get IG Profiles",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U",
+          "mode": "list",
+          "cachedResultName": "IG Scraper Analysis",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 620704002,
+          "mode": "list",
+          "cachedResultName": "settings",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XLMSzE-Nbf0Ld8SkOX2nfSlyfXeNf1DCqZTunLAaI9U/edit#gid=620704002"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -752,
+        -128
+      ],
+      "id": "ca24df93-41c2-406e-b76b-c6440fbc4aa5",
+      "name": "Get IG Scraper Settings - old",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "sPId9ynzVndHtAYA",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldqSDOnSiaxVS5w",
+          "mode": "list",
+          "cachedResultName": "Settings",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbldqSDOnSiaxVS5w"
+        },
+        "filterByFormula": "{platform} = 'instagram'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -240,
+        -64
+      ],
+      "id": "900a83be-3584-4e2a-a026-bd1eed46c81e",
+      "name": "Get IG Scraper Settings",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblKLhycFa9TecgNp",
+          "mode": "list",
+          "cachedResultName": "Instagram Scrape Results",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblKLhycFa9TecgNp"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "Post URL": "={{ $json.url }}",
+            "Owner Fullname": "={{ $json.ownerFullName }}",
+            "Caption": "={{ $json.caption }}",
+            "Content Type AI": "Video",
+            "Duration": "={{ $json.videoDuration }}",
+            "Thumbnail": "=    [\n      {\n        \"url\": \"{{ $json.displayUrl }}\",\n        \"filename\": \"{{ $json.id }}\"\n      }\n    ]",
+            "Views": "={{ $json.videoViewCount }}",
+            "Likes": "={{ $json.likesCount }}",
+            "Comments": "={{ $json.commentsCount }}",
+            "Date": "={{ $json.timestamp }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true
+            },
+            {
+              "id": "Post URL",
+              "displayName": "Post URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Thumbnail",
+              "displayName": "Thumbnail",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Owner Fullname",
+              "displayName": "Owner Fullname",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Caption",
+              "displayName": "Caption",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcript",
+              "displayName": "Transcript",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hook Analysis",
+              "displayName": "Hook Analysis",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Views",
+              "displayName": "Views",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Likes",
+              "displayName": "Likes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Comments",
+              "displayName": "Comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hashtags",
+              "displayName": "Hashtags",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "hashtag1",
+                  "value": "hashtag1"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Duration",
+              "displayName": "Duration",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Related Instagram Profile",
+              "displayName": "Related Instagram Profile",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Auto Hashtag Extraction",
+              "displayName": "Auto Hashtag Extraction",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "hashtag1",
+                  "value": "hashtag1"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Content Type AI",
+              "displayName": "Content Type AI",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Image",
+                  "value": "Image"
+                },
+                {
+                  "name": "Video",
+                  "value": "Video"
+                },
+                {
+                  "name": "Carousel",
+                  "value": "Carousel"
+                },
+                {
+                  "name": "Story",
+                  "value": "Story"
+                },
+                {
+                  "name": "Other",
+                  "value": "Other"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -32,
+        272
+      ],
+      "id": "7b881b06-17dc-48ba-9c58-6c8b61c35082",
+      "name": "Create/Update Scraped Video",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblKLhycFa9TecgNp",
+          "mode": "list",
+          "cachedResultName": "Instagram Scrape Results",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblKLhycFa9TecgNp"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Post URL": "={{ $json.post_url }}",
+            "Transcript": "={{ $json.transcription }}",
+            "Hook Analysis": "={{ $json.hook_analysis }}"
+          },
+          "matchingColumns": [
+            "Post URL"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Post URL",
+              "displayName": "Post URL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Thumbnail",
+              "displayName": "Thumbnail",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Owner Fullname",
+              "displayName": "Owner Fullname",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Caption",
+              "displayName": "Caption",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Transcript",
+              "displayName": "Transcript",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hook Analysis",
+              "displayName": "Hook Analysis",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Views",
+              "displayName": "Views",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Likes",
+              "displayName": "Likes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Comments",
+              "displayName": "Comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Hashtags",
+              "displayName": "Hashtags",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Duration",
+              "displayName": "Duration",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Related Instagram Profile",
+              "displayName": "Related Instagram Profile",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Auto Hashtag Extraction",
+              "displayName": "Auto Hashtag Extraction",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "hashtag1",
+                  "value": "hashtag1"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Content Type AI",
+              "displayName": "Content Type AI",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Image",
+                  "value": "Image"
+                },
+                {
+                  "name": "Video",
+                  "value": "Video"
+                },
+                {
+                  "name": "Carousel",
+                  "value": "Carousel"
+                },
+                {
+                  "name": "Story",
+                  "value": "Story"
+                },
+                {
+                  "name": "Other",
+                  "value": "Other"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1136,
+        256
+      ],
+      "id": "5409d535-24eb-4c43-926b-e6934491a976",
+      "name": "Update record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appBuiwwwXnKKzCY7",
+          "mode": "list",
+          "cachedResultName": "Competitive Analysis",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblKLhycFa9TecgNp",
+          "mode": "list",
+          "cachedResultName": "Instagram Scrape Results",
+          "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tblKLhycFa9TecgNp"
+        },
+        "filterByFormula": "={CreatedRecordAt} > \"{{ $now.minus(8, 'days') }}\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -240,
+        576
+      ],
+      "id": "247c3c8a-589b-426d-a7c9-3f881c086a72",
+      "name": "Search records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fNNxpeJ11aBsFjT4",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -2114,6 +2582,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-10-01T01:31:23.000Z",
-  "versionId": "03e222da-8a0a-4a66-9d23-01f875e9c3e5"
+  "updatedAt": "2025-10-02T02:43:35.000Z",
+  "versionId": "c56c257f-ec8f-419e-83b1-03a60867829d"
 }
