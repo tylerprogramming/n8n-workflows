@@ -1169,7 +1169,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Extract ONLY two things from this transcript: {{ $json.text }}. You will take the transcript and get an amazing understanding of it.\n            I need you to extract a hook (a single punchy one-liner) and power_words (array of the most compelling, high-impact words used).\n            Use the transcript to help you create the hook and power words.",
+        "text": "=You are analyzing an Instagram reel transcript with the goal of understanding why it performed well.  \nYour task is to extract **exactly two things** from the transcript provided:  \n\n1. **hook** → a single, punchy one-liner that captures the most viral, attention-grabbing idea from the transcript. This should feel like a scroll-stopping first line.  \n2. **power_words** → an array of the most compelling, emotionally charged, or high-impact words/phrases used in the transcript. Choose words that drive urgency, curiosity, or strong emotion.  \n\nRules:  \n- If no transcript text is provided or if it is empty, return nothing.  \n- Keep the hook concise (10 words or less).  \n- For power_words, return only unique, high-impact words (3–8 items).  \n- Do not summarize the whole transcript—only capture the hook and power words that explain why the reel could go viral.  \n\nInput:  \nTranscript: {{ $json.text }}  \n\nOutput format (JSON only):  \n{\n  \"hook\": \"string\",\n  \"power_words\": [\"word1\", \"word2\", \"word3\"]\n}\n",
         "hasOutputParser": true,
         "options": {
           "systemMessage": "You are a hook analysis expert."
@@ -1178,7 +1178,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        624,
+        832,
         256
       ],
       "id": "a5075ef6-90d1-4429-bf14-50f5bddf184f",
@@ -1213,7 +1213,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
+        1136,
         256
       ],
       "id": "eb6b173b-48e2-41ef-8b39-20349eb4ba59",
@@ -2507,7 +2507,7 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.1,
       "position": [
-        1136,
+        1344,
         256
       ],
       "id": "5409d535-24eb-4c43-926b-e6934491a976",
@@ -2582,6 +2582,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-10-02T02:43:35.000Z",
-  "versionId": "c56c257f-ec8f-419e-83b1-03a60867829d"
+  "updatedAt": "2025-10-02T20:30:26.000Z",
+  "versionId": "02a4a811-5267-4dea-80cd-be9a15b9b749"
 }
