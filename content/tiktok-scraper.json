@@ -1,17 +1,6 @@
 {
   "active": false,
   "connections": {
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        [
-          {
-            "node": "Search records",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Edit Fields": {
       "main": [
         [
@@ -71,7 +60,7 @@
       "main": [
         [
           {
-            "node": "Transcribe a recording",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -93,19 +82,8 @@
       "main": [
         [
           {
-            "node": "Search records1",
+            "node": "Loop Over Items",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -115,18 +93,7 @@
       "main": [
         [
           {
-            "node": "Aggregate",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Aggregate": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields1",
+            "node": "Loop Over Items1",
             "type": "main",
             "index": 0
           }
@@ -155,11 +122,139 @@
         ]
       ]
     },
-    "Edit Fields1": {
+    "Schedule Trigger": {
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT-5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Individual Reels Analyzer",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "All Reels Analyzer",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Complete Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Search records1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Email": {
+      "main": [
+        [
+          {
+            "node": "Return",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "All Reels Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Complete Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Complete Analysis": {
+      "main": [
+        [
+          {
+            "node": "Prepare Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract All Reels into One": {
+      "main": [
+        [
+          {
+            "node": "All Reels Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Individual Tiktok Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Extract All Reels into One",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Individual Reels Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Individual Reels Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
             "type": "main",
             "index": 0
           }
@@ -175,17 +270,6 @@
   },
   "name": "tiktok-scraper",
   "nodes": [
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        0,
-        0
-      ],
-      "id": "08f65c0e-92c8-4923-b55d-dcede689c273",
-      "name": "When clicking ‘Execute workflow’"
-    },
     {
       "parameters": {
         "assignments": {
@@ -226,6 +310,7 @@
           "cachedResultUrl": "https://console.apify.com/actors/0FXVyOXXEmdGcV88a/input"
         },
         "customBody": "={\n    \"excludePinnedPosts\": false,\n    \"oldestPostDateUnified\": \"{{ $json.days_back }} days\",\n    \"profileScrapeSections\": [\n        \"videos\"\n    ],\n    \"profileSorting\": \"popular\",\n    \"profiles\": {{ $json.handles.toJsonString() }},\n    \"shouldDownloadAvatars\": false,\n    \"shouldDownloadCovers\": true,\n    \"shouldDownloadSlideshowImages\": false,\n    \"shouldDownloadSubtitles\": false,\n    \"shouldDownloadVideos\": true\n}",
+        "timeout": {},
         "authentication": "apifyOAuth2Api"
       },
       "type": "@apify/n8n-nodes-apify.apify",
@@ -294,8 +379,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1952,
-        0
+        16,
+        256
       ],
       "id": "e1455637-bb45-4ae0-9a16-5c0fc7a6511d",
       "name": "Download Videos"
@@ -516,7 +601,7 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.1,
       "position": [
-        1696,
+        1424,
         0
       ],
       "id": "af0dd9a4-8f6a-45fe-a577-cbfd8186059b",
@@ -765,7 +850,7 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.1,
       "position": [
-        1472,
+        1232,
         0
       ],
       "id": "f3f273a5-2a0b-4415-9e67-998ec52015ac",
@@ -786,8 +871,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        2192,
-        64
+        384,
+        352
       ],
       "id": "3323d012-eaf4-4438-a5f0-3850d8755f38",
       "name": "Transcribe a recording",
@@ -1030,8 +1115,8 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.1,
       "position": [
-        80,
-        336
+        544,
+        352
       ],
       "id": "5861f14f-883b-43d3-a8c9-f7146440f68f",
       "name": "Update record",
@@ -1041,46 +1126,6 @@
           "name": "Airtable Personal Access Token account"
         }
       }
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-5",
-          "mode": "list",
-          "cachedResultName": "gpt-5"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        1056,
-        624
-      ],
-      "id": "c310cfec-306b-498f-9578-ac09594321f8",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "marROkDq8FtIIcmK",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Inputs:\n- top TikToks (5–10 items; each item includes transcript/on-screen text/caption and, if available, views, likes, comments, shares, post_url, thumbnail_url):\n{{ $json.data }}\n\nReturn EXACTLY this JSON (no markdown/prose):\n{\n  \"reels\": [\n    {\n      \"title_line\": \"<punchy headline from transcript/caption (<=90 chars, no hashtags/emojis)>\",\n      \"tier_line\": \"<Tier> (<engagement%> engagement; <views> views • <likes> likes • <comments> comments)\",\n      \"why_line\": \"<one clear sentence on why it performed based on the text/format>\",\n      \"post_url\": \"<tiktok canonical url>\",\n      \"thumbnail_url\": \"<cover image url>\"\n    }\n    // 5–10 items total\n  ],\n  \"patterns\": {\n    \"topics_csv\": \"<5–8 short topic phrases, comma-separated>\",\n    \"hooks_csv\": \"<5–8 hook TYPES (not titles), comma-separated>\",\n    \"trends_csv\": \"<5–8 production/format trends, comma-separated>\",\n    \"playbook_bullets\": [\"<4–6 short imperatives>\"]\n  },\n  \"hooks_ideas\": [\"<12–15 new hook lines, 6–12 words each>\"]\n}\n\nRules (keep it simple):\n- title_line: derive from the first promise/outcome in the transcript or caption. No hashtags/emojis/@.\n- tier_line format must match EXACTLY:\n  \"<Tier> (<engagement%> engagement; <views> views • <likes> likes • <comments> comments)\"\n  • engagement% = ((likes + comments + shares_if_given) / views) * 100, round to ONE decimal.\n  • Tier by engagement%: High ≥ 15.0%, Medium 7.5–14.9%, Low < 7.5%.\n  • If any metric is missing, treat it as 0; still produce the full string.\n  • Use thousands separators (e.g., 148,700).\n- why_line: 1 sentence max. Point to concrete drivers seen in the text/format (e.g., one-move framing, benefit stack, sets/reps, ultra-short pacing, save/share CTA, identity line).\n- patterns.*: compress—short phrases only (no long sentences).\n- hooks_ideas: do NOT copy titles; make platform-native, testable lines.\n\nOutput must be valid JSON and contain non-empty arrays:\n- reels: 5–10 items\n- playbook_bullets: 4–6 bullets\n- hooks_ideas: 12–15 lines",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2.2,
-      "position": [
-        1152,
-        336
-      ],
-      "id": "7c1c6c8a-4261-4174-99f8-2abbc033e973",
-      "name": "AI Agent"
     },
     {
       "parameters": {
@@ -1099,14 +1144,14 @@
           "cachedResultName": "TikTok Results",
           "cachedResultUrl": "https://airtable.com/appBuiwwwXnKKzCY7/tbl9N4QDV9AauqfjB"
         },
-        "filterByFormula": "=({created_at} >= '{{ $now.minus(14, 'days').format('MM/dd/yyyy') }}')",
+        "filterByFormula": "=({created_at} >= '{{ $now.minus($('Edit Fields').item.json.days_back, 'days').format('yyyy-MM-dd') }}')",
         "options": {}
       },
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.1,
       "position": [
-        336,
-        336
+        864,
+        288
       ],
       "id": "2f3d210e-f6bd-4d3f-8ba2-f64d9b7060ed",
       "name": "Search records1",
@@ -1117,22 +1162,6 @@
           "name": "Airtable Personal Access Token account"
         }
       }
-    },
-    {
-      "parameters": {
-        "aggregate": "aggregateAllItemData",
-        "include": "specifiedFields",
-        "fieldsToInclude": "text, transcript, metrics_views",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.aggregate",
-      "typeVersion": 1,
-      "position": [
-        592,
-        336
-      ],
-      "id": "5f43af18-d56e-4545-ac81-dea92e5f5885",
-      "name": "Aggregate"
     },
     {
       "parameters": {
@@ -1149,7 +1178,7 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        896,
+        864,
         0
       ],
       "id": "4daad50b-a975-4ea1-ba34-90d4c6fdc0b9",
@@ -1162,7 +1191,7 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        1184,
+        1040,
         0
       ],
       "id": "d4862c62-a17d-4aa2-9ca7-7b6c1735248f",
@@ -1170,12 +1199,194 @@
     },
     {
       "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtHour": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "126e24b5-249c-48fd-b81f-2086ae577df7",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "content": "## Step 1: Scape Data\n### Run Apify Actor for Tiktok",
+        "height": 256,
+        "width": 832,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        -96
+      ],
+      "id": "fac70ad4-f307-4cea-b996-1fe639a71e97",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1424,
+        640
+      ],
+      "id": "c310cfec-306b-498f-9578-ac09594321f8",
+      "name": "GPT-5",
+      "credentials": {
+        "openAiApi": {
+          "id": "marROkDq8FtIIcmK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Step 2: Scape Data\n### Save/Update Scraped Data\n",
+        "height": 256,
+        "width": 768,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        816,
+        -96
+      ],
+      "id": "f2898b39-d19f-4988-8fbc-a531317baf07",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "batchSize": 10,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        176,
+        256
+      ],
+      "id": "d812c1ed-1367-4014-8060-5faa9d21b564",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "sendTo": "=tylerreedytlearning@gmail.com",
+        "subject": "={{ $json.subject }}",
+        "message": "={{ $json.email_html }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2192,
+        352
+      ],
+      "id": "04088598-305b-4f94-9316-e595c7179c41",
+      "name": "Send a message",
+      "webhookId": "fc8a0ab8-cae6-4e04-8a56-c776d1c43cdd",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q3LSD64z5q8adBIV",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function node: parse Agent-3 result and render HTML/text report (styled)\n// Accepts payload shaped like the sample provided in the last message:\n// {\n//   output: \"{\\\"reels\\\": [...], \\\"patterns\\\": {...}, \\\"hooks_ideas\\\": [...]}\"\n// }\n\n//----------------------------------------------------\n// Helpers\n//----------------------------------------------------\nfunction tryParseJsonLoose(v) {\n  if (v == null) return null;\n  if (typeof v === \"object\") return v;\n  if (typeof v !== \"string\") return null;\n  let t = v.trim();\n  t = t.replace(/^```(?:json)?\\s*/i, \"\").replace(/```$/i, \"\").trim(); // strip code fences if present\n  try { return JSON.parse(t); } catch {\n    // try substring between first { and last }\n    const s = t.indexOf(\"{\"), e = t.lastIndexOf(\"}\");\n    if (s >= 0 && e > s) {\n      try { return JSON.parse(t.slice(s, e + 1)); } catch {}\n    }\n    return null;\n  }\n}\n\nfunction escHtml(s) {\n  return String(s ?? \"\")\n    .replace(/&/g, \"&amp;\")\n    .replace(/</g, \"&lt;\")\n    .replace(/>/g, \"&gt;\");\n}\n\nfunction utcStamp() {\n  const d = new Date();\n  const yyyy = d.getUTCFullYear();\n  const mm = String(d.getUTCMonth() + 1).padStart(2, \"0\");\n  const dd = String(d.getUTCDate()).padStart(2, \"0\");\n  const hh = String(d.getUTCHours()).padStart(2, \"0\");\n  const mi = String(d.getUTCMinutes()).padStart(2, \"0\");\n  return `${yyyy}-${mm}-${dd} ${hh}:${mi} UTC`;\n}\n\nfunction splitCsvList(s) {\n  if (!s) return [];\n  return s.split(\",\").map(x => x.trim()).filter(Boolean);\n}\n\nfunction parseMetrics(tierLine = \"\") {\n  const views = (tierLine.match(/([\\d,]+)\\s*views/i) || [])[1] || \"\";\n  const likes = (tierLine.match(/([\\d,]+)\\s*likes/i) || [])[1] || \"\";\n  const comments = (tierLine.match(/([\\d,]+)\\s*comments/i) || [])[1] || \"\";\n  const engagement = (tierLine.match(/([\\d.]+)\\s*%\\s*engagement/i) || [])[1] || \"\";\n  return { views, likes, comments, engagement };\n}\n\n//----------------------------------------------------\n// 1) Read & parse Agent-3 payload from incoming items\n//----------------------------------------------------\nconst items = $input.all();\nlet agent = null;\n\nfor (const it of items) {\n  const j = it.json || {};\n  if (j.output != null) {\n    agent = tryParseJsonLoose(j.output);\n    if (agent) break;\n  }\n  if (!agent) {\n    const cand = tryParseJsonLoose(j);\n    if (cand && (cand.reels || cand.patterns || cand.hooks_ideas)) {\n      agent = cand;\n      break;\n    }\n  }\n}\n\nif (!agent) {\n  const subject = `Tiktok Competitive Analysis}`;\n  return [{ json: { subject, html: \"<div>No data</div>\", text: \"No data\" } }];\n}\n\n//----------------------------------------------------\n// 2) Normalize inputs\n//----------------------------------------------------\nconst reels = Array.isArray(agent.reels) ? agent.reels : [];\nconst patterns = agent.patterns || {};\nconst hooksIdeas = Array.isArray(agent.hooks_ideas) ? agent.hooks_ideas : [];\n\nconst topicsArr  = splitCsvList(patterns.topics_csv || \"\");\nconst hooksArr   = splitCsvList(patterns.hooks_csv  || \"\");\nconst trendsArr  = splitCsvList(patterns.trends_csv || \"\");\nconst playbook   = Array.isArray(patterns.playbook_bullets) ? patterns.playbook_bullets : [];\n\nconst timestamp = utcStamp();\n\n//----------------------------------------------------\n// 3) Build HTML (email-safe inline styles)\n//----------------------------------------------------\nlet html = `<!doctype html>\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"x-apple-disable-message-reformatting\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>IG Competitive Analysis</title>\n  </head>\n  <body style=\"margin:0; padding:0; background:#f6f7fb; color:#111111;\">\n    <div style=\"max-width:720px; margin:0 auto; padding:24px; font-family:Inter, Arial, sans-serif;\">\n      <!-- Header -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h2 style=\"margin:0; font-size:20px; line-height:1.3; font-weight:700; color:#0b74de;\">\n          Tiktok Analysis\n        </h2>\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Top Competitor Reels -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h3 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#111;\">Top Competitor Reels</h3>\n`;\n\nfor (const r of reels) {\n  const title = escHtml(r.title_line || \"\");\n  const why   = escHtml(r.why_line || \"\");\n  const post  = escHtml(r.post_url || \"\");\n  const thumb = escHtml(r.thumbnail_url || \"\");\n  const { views, likes, comments, engagement } = parseMetrics(r.tier_line || \"\");\n\n  html += `\n        <div style=\"border-left:4px solid #f59e0b; background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:14px; margin:12px 0;\">\n          <div style=\"display:flex; align-items:flex-start;\">\n            ${thumb ? `\n            <a href=\"${post}\" aria-label=\"Open reel\" style=\"display:block; width:120px; height:120px; border-radius:10px; overflow:hidden; border:1px solid #fde68a; margin-right:12px; background:#fff3cd;\">\n              <img src=\"${thumb}\" width=\"120\" height=\"120\" alt=\"Reel thumbnail\" style=\"display:block; width:120px; height:120px; object-fit:cover;\">\n            </a>` : ``}\n\n            <div style=\"flex:1;\">\n              <div style=\"font-weight:700; color:#92400e; font-size:14px; line-height:1.4;\">${title}</div>\n\n              <div style=\"margin-top:8px;\">\n                ${views ? `<span style=\"display:inline-block; font-size:12px; color:#b91c1c; background:#fee2e2; border:1px solid #fecaca; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(views)} views</span>` : ``}\n                ${likes ? `<span style=\"display:inline-block; font-size:12px; color:#0b74de; background:#eaf3ff; border:1px solid #d6e7ff; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(likes)} likes</span>` : ``}\n                ${comments ? `<span style=\"display:inline-block; font-size:12px; color:#7c3aed; background:#f5edff; border:1px solid #e6d9ff; padding:2px 8px; border-radius:999px; margin-right:6px;\">${escHtml(comments)} comments</span>` : ``}\n                ${engagement ? `<span style=\"display:inline-block; font-size:12px; color:#065f46; background:#eafff4; border:1px solid #c7f7e2; padding:2px 8px; border-radius:999px;\">Engagement • ${escHtml(engagement)}%</span>` : ``}\n              </div>\n\n              ${why ? `\n              <div style=\"margin-top:10px; font-size:13px; color:#374151; line-height:1.5;\">\n                <span style=\"font-weight:700; color:#111;\">Why it worked:</span>\n                ${why}\n              </div>` : ``}\n            </div>\n          </div>\n        </div>`;\n}\n\nhtml += `\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Winning Patterns (color chips + checklist) -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:20px;\">\n        <h3 style=\"margin:0 0 12px; font-size:16px; font-weight:700; color:#111;\">Winning Patterns</h3>\n\n        <!-- Topics -->\n        <div style=\"margin:10px 0;\">\n          <div style=\"font-weight:700; font-size:14px; color:#92400e; margin-bottom:6px;\">Topics</div>\n          <div>\n            ${topicsArr.map(t =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#fffbeb; border:1px solid #fde68a; color:#92400e;\">${escHtml(t)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Hooks -->\n        <div style=\"margin:14px 0 10px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#0b74de; margin-bottom:6px;\">Hooks</div>\n          <div>\n            ${hooksArr.map(h =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#eaf3ff; border:1px solid #d6e7ff; color:#0b74de;\">${escHtml(h)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Trends -->\n        <div style=\"margin:14px 0 10px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#7c3aed; margin-bottom:6px;\">Trends</div>\n          <div>\n            ${trendsArr.map(tr =>\n              `<span style=\"display:inline-block; margin:4px 6px 0 0; font-size:12px; padding:4px 10px; border-radius:999px; background:#f5edff; border:1px solid #e6d9ff; color:#7c3aed;\">${escHtml(tr)}</span>`\n            ).join(\"\")}\n          </div>\n        </div>\n\n        <!-- Playbook -->\n        ${playbook.length ? `\n        <div style=\"margin:16px 0 6px;\">\n          <div style=\"font-weight:700; font-size:14px; color:#065f46; margin-bottom:6px;\">Playbook</div>\n          <ul style=\"list-style:none; margin:0; padding:0;\">\n            ${playbook.map(b =>\n              `<li style=\"margin:6px 0; font-size:13px; line-height:1.45;\">\n                 <span style=\"display:inline-block; font-size:11px; color:#065f46; background:#eafff4; border:1px solid #c7f7e2; padding:2px 8px; border-radius:999px; margin-right:8px;\">✔</span>\n                 <span style=\"color:#1f2937;\">${escHtml(b)}</span>\n               </li>`\n            ).join(\"\")}\n          </ul>\n        </div>` : ``}\n      </div>\n\n      <div style=\"height:12px;\"></div>\n\n      <!-- Data-Driven Hook Ideas -->\n      <div style=\"background:#ffffff; border:1px solid #e7eaf3; border-radius:12px; padding:22px;\">\n        <h3 style=\"margin:0 0 10px; font-size:18px; font-weight:800; color:#111;\">Data-Driven Hook Ideas</h3>\n        <ol style=\"margin:8px 0 0 18px; padding:0; font-size:15px; line-height:1.6;\">\n          ${hooksIdeas.map(h => `<li style=\"margin:6px 0;\">${escHtml(h)}</li>`).join(\"\")}\n        </ol>\n      </div>\n\n      <!-- Footer -->\n      <div style=\"text-align:center; color:#6b7280; font-size:12px; padding:16px 8px;\">\n        Generated by your n8n pipeline.\n      </div>\n    </div>\n  </body>\n</html>`;\n\n//----------------------------------------------------\n// 4) Build plaintext companion\n//----------------------------------------------------\nfunction plainList(title, arr) {\n  if (!arr || !arr.length) return \"\";\n  return `${title}\\n- ${arr.join(\"\\n- \")}\\n`;\n}\n\nconst reelsText = reels.map(r => {\n  const { views, likes, comments, engagement } = parseMetrics(r.tier_line || \"\");\n  const bits = [];\n  bits.push(r.title_line || \"\");\n  const stats = [\n    views ? `${views} views` : null,\n    likes ? `${likes} likes` : null,\n    comments ? `${comments} comments` : null,\n    engagement ? `Engagement ${engagement}%` : null\n  ].filter(Boolean).join(\" • \");\n  if (stats) bits.push(`• ${stats}`);\n  if (r.why_line) bits.push(`• Why it worked: ${r.why_line}`);\n  if (r.post_url) bits.push(`• Source: ${r.post_url}`);\n  return bits.join(\"\\n\");\n}).join(\"\\n\\n\");\n\nconst text =\n`Tiktok Analysis\n\nTop Competitor Reels\n${reelsText}\n\nWinning Patterns\n${plainList(\"Topics\", topicsArr)}\n${plainList(\"Hooks\", hooksArr)}\n${plainList(\"Trends\", trendsArr)}\n${playbook.length ? plainList(\"Playbook\", playbook) : \"\"}\n\nData-Driven Hook Ideas\n${hooksIdeas.map((h,i)=>`${i+1}. ${h}`).join(\"\\n\")}\n`;\n\n//----------------------------------------------------\n// 5) Subject + return\n//----------------------------------------------------\nconst subject = `Tiktok Competitive Analysis`;\n\nreturn [{\n  json: {\n    subject,\n    html,\n    text,\n    // also include the parsed inputs for any downstream debug\n    parsed: { reels, patterns: { topicsArr, hooksArr, trendsArr, playbook }, hooksIdeas }\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1728,
+        352
+      ],
+      "id": "b0228d36-087d-414f-a22d-ee2a882c0450",
+      "name": "Prepare Email"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Input:\n{ \"per_reel\": {{ $json.per_reel_json }} }\n\nReturn EXACTLY:\n{\n  \"overall\": {\n    \"topics\": [\"<5–10 themes>\"],\n    \"hooks\": [\"<6–10 reusable hook patterns>\"],\n    \"trends\": [\"<6–10 execution patterns (pacing, CTA, structure, visuals)>\"]\n  },\n  \"top_competitor_reels\": [\n    {\n      \"thumbnail\": \"this will be the thumbnail image at per_reel.thumbnail\",\n      \"postUrl\": \"this is the per_reel.postUrl\",\n      \"title_line\": \"<from per_reel.title_line>\",\n      \"tier_line\": \"<High|Medium|Low> (<ER%> ER; <_metrics_str>)\",\n      \"why_line\": \"<1–2 sentences grounded in why_it_worked and any evidence_quotes>\",\n    }\n  ]\n}\nRules:\n- Rank top_competitor_reels by metrics._er (desc). Show ER as one decimal percent (e.g., 20.7%).\n- If ties, prefer clearer title_line and concrete outcomes.\n",
+        "options": {
+          "systemMessage": "You are \"Cross-Reel Synthesizer\". Aggregate patterns across all reels.\nUse only Agent 1 output (per_reel). Keep bullets high-signal and deduped.\nReturn VALID JSON only."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1824,
+        -16
+      ],
+      "id": "768ce01b-50c0-4de9-aafa-efc5a637a4de",
+      "name": "All Reels Analyzer"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Inputs:\n- overall insights:\n{{ $json.output }}\n- top competitor reels (5–10 items):\n{{ $('Extract All Reels into One').item.json.per_reel_json }}\n\n\nReturn EXACTLY this JSON (no extra keys, no commentary):\n\n{\n  \"reels\": [\n    {\n      \"title_line\": \"<title/heading>\",\n      \"tier_line\": \"<Tier> (<engagement%> engagement; <views> views • <likes> likes • <comments> comments)\",\n      \"why_line\": \"<one short sentence (or two very short sentences)>\",\n      \"post_url\": \"<https://...>\",\n      \"thumbnail_url\": \"<https://...>\"\n    }\n  ],\n  \"patterns\": {\n    \"topics_csv\": \"<3–6 short topics, comma-separated>\",\n    \"hooks_csv\": \"<3–6 short hook themes, comma-separated>\",\n    \"trends_csv\": \"<3–5 short trends, comma-separated>\",\n    \"playbook_bullets\": [\"<4–7 bullets, each ≤9 words>\"]\n  },\n  \"hooks_ideas\": [\"<12–15 data-driven hooks, each ≤12 words>\"]\n}\n\n\nHow to compose the fields\n\nreels[] (build 5–10):\n\ntitle_line: from each item’s title/heading.\n\ntier_line: format exactly\n\"<Tier> (<ER%> engagement; <views> views • <likes> likes • <comments> comments)\"\n\nER as one decimal (e.g., 4.2%).\n\nUse thousands separators for numbers.\n\nwhy_line: 1 concise sentence (max 28 words) summarizing why it worked; may include one short quote if useful.\n\npost_url: canonical post link if available, else \"\".\n\nthumbnail_url: square-friendly image if available, else \"\".\n\npatterns (make it concise):\n\ntopics_csv: compress overall topics to 3–6 short phrases.\n\nhooks_csv: compress overall hooks to 3–6 short themes (no verbatim titles).\n\ntrends_csv: compress overall trends to 3–5 short phrases.\n\nplaybook_bullets: 4–7 actionable rules, each ≤ 9 words (e.g., “Lead with one move + outcome”, “Give sets and reps early”).\n\nhooks_ideas:\n\n12–15 original hook lines reflecting the patterns (no copy from titles).\n\nKeep each line ≤ 12 words and “save/try/today” style CTAs are OK.\n\nConstraints\n\nNo HTML anywhere.\n\nNo extra fields or trailing commas.\n\nKeep language crisp; avoid filler.",
+        "options": {
+          "systemMessage": "You are \"Hooksmith & Email Composer\".\nCreate 12–15 new hooks and assemble a production-ready email (plaintext + HTML)\nmatching the exact layout below. Ground everything in the inputs.\nConstraints:\n- Hooks ≤ 75 chars; no emojis/quotes/hashtags.\n- Inline CSS only (Gmail-safe). No external fonts or images.\n- Return VALID JSON only.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        2128,
+        -16
+      ],
+      "id": "ff8695c0-8e32-421e-a0bc-97fcf272641f",
+      "name": "Complete Analysis"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Run Once\n\nfunction tryParseLoose(v) {\n  if (v == null) return null;\n  if (typeof v === 'object') return v;\n  if (typeof v !== 'string') return null;\n\n  let t = v.trim();\n  // strip code fences if present\n  t = t.replace(/^```(?:json)?\\s*/i, '').replace(/```$/i, '').trim();\n\n  try { return JSON.parse(t); } catch {\n    const s = t.indexOf('{'), e = t.lastIndexOf('}');\n    if (s >= 0 && e > s) {\n      try { return JSON.parse(t.slice(s, e + 1)); } catch {}\n    }\n    return null;\n  }\n}\n\nconst per_reel = [];\n\nfunction collect(obj) {\n  if (!obj) return;\n\n  // direct arrays\n  if (Array.isArray(obj)) {\n    per_reel.push(...obj);\n    return;\n  }\n\n  // arrays under known keys\n  if (Array.isArray(obj.reels))      per_reel.push(...obj.reels);\n  if (Array.isArray(obj.per_reel))   per_reel.push(...obj.per_reel);\n\n  // recurse into common wrapper keys (string or object)\n  for (const k of ['output', 'data', 'result', 'response', 'payload']) {\n    const v = obj[k];\n    if (v == null) continue;\n    const parsed = tryParseLoose(v) ?? (typeof v === 'object' ? v : null);\n    if (parsed) collect(parsed);\n  }\n}\n\n// Walk all incoming items\nfor (const it of $input.all()) {\n  const j = it.json ?? it;\n\n  // direct arrays present at top-level item\n  if (Array.isArray(j.reels))    per_reel.push(...j.reels);\n  if (Array.isArray(j.per_reel)) per_reel.push(...j.per_reel);\n\n  // parse likely containers\n  for (const key of ['output', 'data', 'result', 'response', 'payload']) {\n    const parsed = tryParseLoose(j[key]) ?? (typeof j[key] === 'object' ? j[key] : null);\n    if (parsed) collect(parsed);\n  }\n}\n\nreturn [{\n  json: {\n    per_reel,\n    per_reel_json: JSON.stringify({ per_reel })\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        -16
+      ],
+      "id": "3c8860d8-f622-4dbb-aad6-5a8123262313",
+      "name": "Extract All Reels into One"
+    },
+    {
+      "parameters": {
         "assignments": {
           "assignments": [
             {
-              "id": "0bb70025-497d-4e4f-bf7e-3945e93972e7",
-              "name": "data",
-              "value": "={{ $json.data.toJsonString() }}",
+              "id": "52301525-3ee5-44c2-9bf0-ee0197ae8960",
+              "name": "subject",
+              "value": "={{ $json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "6325baf2-659d-43b7-9c3f-297b84f6235a",
+              "name": "email_html",
+              "value": "={{ $json.html }}",
               "type": "string"
             }
           ]
@@ -1185,11 +1396,105 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        848,
-        336
+        1952,
+        352
       ],
-      "id": "452a8853-3a16-4eef-b312-03aa5b596ac6",
-      "name": "Edit Fields1"
+      "id": "6d06b125-6591-4911-99d4-64eafe024622",
+      "name": "Return"
+    },
+    {
+      "parameters": {
+        "content": "## Send Email Analysis",
+        "height": 640,
+        "width": 816,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        -96
+      ],
+      "id": "54d417ce-a05a-41d2-b46c-21ad9115c23b",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Inputs:\n- top TikToks (5–10 items; each item includes transcript/on-screen text/caption and, if available, views, likes, comments, shares, post_url, thumbnail_url):\n{{ $json.text }}\n\nReturn EXACTLY this JSON (no markdown/prose):\n{\n  \"reels\": [\n    {\n      \"title_line\": \"<punchy headline from transcript/caption (<=90 chars, no hashtags/emojis)>\",\n      \"tier_line\": \"<Tier> (<engagement%> engagement; <views> views • <likes> likes • <comments> comments)\",\n      \"why_line\": \"<one clear sentence on why it performed based on the text/format>\",\n      \"post_url\": \"{{ $json.download_url }}\",\n      \"thumbnail_url\": \"{{ $json.cover_url }}\"\n    }\n    // 5–10 items total\n  ],\n  \"patterns\": {\n    \"topics_csv\": \"<5–8 short topic phrases, comma-separated>\",\n    \"hooks_csv\": \"<5–8 hook TYPES (not titles), comma-separated>\",\n    \"trends_csv\": \"<5–8 production/format trends, comma-separated>\",\n    \"playbook_bullets\": [\"<4–6 short imperatives>\"]\n  },\n  \"hooks_ideas\": [\"<12–15 new hook lines, 6–12 words each>\"]\n}\n\nRules (keep it simple):\n\nLikes: {{ $json.metrics_likes }}\nViews: {{ $json.metrics_views }}\nComments: {{ $json.metrics_comments }}\nShares: {{ $json.metrics_shares }}\nSaves: {{ $json.metrics_saves }}\n\n- title_line: derive from the first promise/outcome in the transcript or caption. No hashtags/emojis/@.\n- tier_line format must match EXACTLY:\n  \"<Tier> (<engagement%> engagement; <views> views • <likes> likes • <comments> comments)\"\n  • engagement% = ((likes + comments + shares_if_given) / views) * 100, round to ONE decimal.\n  • Tier by engagement%: High ≥ 15.0%, Medium 7.5–14.9%, Low < 7.5%.\n  • If any metric is missing, treat it as 0; still produce the full string.\n  • Use thousands separators (e.g., 148,700).\n- why_line: 1 sentence max. Point to concrete drivers seen in the text/format (e.g., one-move framing, benefit stack, sets/reps, ultra-short pacing, save/share CTA, identity line).\n- patterns.*: compress—short phrases only (no long sentences).\n- hooks_ideas: do NOT copy titles; make platform-native, testable lines.\n\nOutput must be valid JSON and contain non-empty arrays:\n- reels: 5–10 items\n- playbook_bullets: 4–6 bullets\n- hooks_ideas: 12–15 lines",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1088,
+        -320
+      ],
+      "id": "7c1c6c8a-4261-4174-99f8-2abbc033e973",
+      "name": "Individual Tiktok Agent"
+    },
+    {
+      "parameters": {
+        "batchSize": 10,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        288
+      ],
+      "id": "bc7be642-faf5-497b-9520-0fe58d30e143",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze these reels and return exactly:\n{\n  \"per_reel\": [\n    {\n      \"title_line\": \"<<=120 chars headline from hook/caption/transcription>\",\n      \"topic\": \"<short phrase>\",\n      \"hook_detected\": \"<string|null>\",\n      \"hook_type\": \"<one trigger bucket|null>\",\n      \"power_words_found\": [\"<lowercase>\", \"...\"],    // only words actually present\n      \"summary_1liner\": \"<what the viewer gets>\",\n      \"why_it_worked\": [\"<3–5 bullets grounded in text/metrics>\"],\n      \"weak_points\": [\"<1–3 bullets>\"],\n      \"evidence_quotes\": [\"<<=150 char quote>\", \"...\"], // 0–2 from caption/transcription\n      \"cta_detected\": \"<string|null>\",\n      \"alt_hook\": \"<<=75 chars>\",\n      \"metrics\": { \"_er\": <number|null>, \"_er_tier\": \"<string|null>\", \"_metrics_str\": \"<string|null>\" },\n      \"thumbnail\": \"{{ $json.cover_url }}\",\n      \"postUrl\": \"{{ $json.web_url }}\"\n    }\n  ]\n}\nData:\nThe caption:\n{{ $json.text }}\n\nThe transcription:\n{{ $json.transcript }}\n\nThe engagement information:\nViews: {{ $json.metrics_views }}\nLikes: {{ $json.metrics_likes }}\nComments: {{ $json.metrics_comments }}\nShares: {{ $json.metrics_shares }}\nSaves: {{ $json.metrics_saves }}\n\nFormula for ER:\ner = if views > 0 ? (likes + comments) / views : null;\n\nThis sets the _er_tier:\nif (er == null) return \"Unknown\";\nif (er >= 0.15) return \"High\";\nif (er >= 0.07) return \"Medium\";\n\nThis sets the _metrics_str:\nmetrics_str: `${likes} likes, ${comments} comments on ${views} views`\n\nRules:\n- Prefer evidence from transcription/caption. No inventions.\n- Keep outputs compact and actionable.\n- If transcript is just a song or is very short, just use the caption.\n- for the engagement rate, use the views, comments and likes provided.\n",
+        "options": {
+          "systemMessage": "You are \"Reel Analyzer\". For each reel, analyze concisely using ONLY provided fields\n(hook, caption, transcription, hashtags, metrics). Choose EXACTLY ONE primary trigger:\ncuriosity_gap, surprise, utility_howto, proof_results, contrarian, identity_belonging,\nemotion_awe, story_tension, urgency_scarcity, credibility_socialproof.\nReturn VALID JSON only."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1296,
+        352
+      ],
+      "id": "0b5b3a29-7174-4f02-8370-eb28617e6fcb",
+      "name": "Individual Reels Analyzer"
+    },
+    {
+      "parameters": {
+        "content": "## Step 3: Download/Transcribe\n### Transcribe the Videos\n",
+        "height": 368,
+        "width": 832,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        176
+      ],
+      "id": "47102631-1fb7-4f60-a323-98085fcc0dfb",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Step 4: Tiktok Analyzer\n### Carefully and thoughtfully analyze each tiktok\n",
+        "height": 368,
+        "width": 768,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        816,
+        176
+      ],
+      "id": "75e4ec29-b2a8-429a-9fce-960d155cd80f",
+      "name": "Sticky Note3"
     }
   ],
   "pinData": {},
@@ -1219,6 +1524,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-09-09T14:56:09.000Z",
-  "versionId": "8bac5edf-9028-44c9-9b9a-0a42f9b5f14d"
+  "updatedAt": "2025-10-06T02:39:49.000Z",
+  "versionId": "c435b870-23c7-4b92-8ada-09d22154bef1"
 }
